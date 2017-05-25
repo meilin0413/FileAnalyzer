@@ -55,24 +55,12 @@
 
 - (void)addCommitInfoIntoCommitTable
 {
-   
-    
     NSData *commitData = [[NSData alloc] initWithContentsOfFile:_commitPath];
-    // NSLog(@"commitData %@",commitData);
-    //NSLog(@"%@",[CommitFile authorString]);
-    
     NSData *authorData = [[CommitFile authorString] dataUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"%@",authorData);
-    
     NSMutableDictionary *locationsForAuthors = [commitData locationOfData:authorData];
-    //NSLog(@"%@ ::",locationsForAuthors);
-    
     NSArray *keys = [locationsForAuthors allKeys];
     
     keys = [keys sortedArrayUsingComparator:^(id obj1,id obj2){return [obj1 compare:obj2];}];
-    
-    //NSLog(@"%@",keys);
-    
     
     NSArray *extensionString = [CommitFile extensionString];
     
@@ -120,10 +108,7 @@
             NSLog(@"%@ changed %@",name,commitFileForauthor);
             
             TableController *controller = [[TableController alloc] initTableWith:_commitTablePath];
-            
             [controller updateCommitTable:name andCommitFiles:commitFileForauthor];
-            
-            //[controller close];
             
         }
     }

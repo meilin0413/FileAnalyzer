@@ -30,7 +30,6 @@
         [task setLaunchPath:@"/usr/bin/find"];
         [task setArguments:[NSArray arrayWithObjects:repopath, @"-name", @"*.pbxproj", nil]];
         task.standardOutput = pipe;
-        // [task setStandardInput:[NSPipe pipe]];
         
         [task launch];
         
@@ -38,7 +37,7 @@
         [file closeFile];
         
         NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        //        NSLog(@"the output is %@",output);
+
         self.fileList = [output componentsSeparatedByString:@"\n"];
         //[self addFileToFileTable];
         
@@ -48,33 +47,31 @@
 }
 - (void) addFileToFileTable
 {
-    //    NSMutableArray *projlist = [NSMutableArray array];
-    //    NSMutableArray *plistlist = [NSMutableArray array];
-    //    NSString *projname = [NSString string];
-    //    NSString *libraryName;
-    
     TableController *control = [[TableController alloc] initTableWith:sqlitePath];
-    NSString *a =@".sqlite";
+    
+    NSString *extension =@".sqlite";
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         NSLog(@"%@", [NSThread currentThread]);
     }];
+    
     NSMutableArray *arr = [NSMutableArray array];
     NSInteger i = 0;
     for (NSString *path in self.fileList) {
         [operation addExecutionBlock:^{
             
             NSNumber *num = [NSNumber numberWithInteger:i];
-            NSString *b = [NSString stringWithFormat:@"%@%@",num,a];
+            NSString *tmpSqlitePath = [NSString stringWithFormat:@"%@%@",num,extension];
             
-            SampleAnalyzer *proj = [[SampleAnalyzer alloc] initWithFile:path andsqlitePath:b];
+            SampleAnalyzer *proj = [[SampleAnalyzer alloc] initWithFile:path andsqlitePath:tmpSqlitePath];
             if(proj)
             {
                 [arr addObject:proj];
             }
+            
             NSFileManager *fm = [NSFileManager defaultManager];
-            if ([fm fileExistsAtPath:b])
+            if ([fm fileExistsAtPath:tmpSqlitePath])
             {
-                [fm removeItemAtPath:b error:NULL];
+                [fm removeItemAtPath:tmpSqlitePath error:NULL];
             }
             
         }];
@@ -82,14 +79,13 @@
     }
     [operation start];
     
-    //[control open];
-    NSLog(@"Begin update table!");
+    
+    NSLog(@"Begin update table...");
     for (SampleAnalyzer *proj in arr)
     {
         [control updateAllTable:proj];
     }
     NSLog(@"End update table!");
-    [control close];
 
     
 }
