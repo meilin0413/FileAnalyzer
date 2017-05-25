@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A9C11F51ED43B8200FC5AFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C11F41ED43B8200FC5AFE /* main.m */; };
+		2A9C11FD1ED43BAD00FC5AFE /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */; };
+		2A9C11FF1ED43BBA00FC5AFE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */; };
+		2A9C120C1ED43BEB00FC5AFE /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12011ED43BEB00FC5AFE /* FMDatabase.m */; };
+		2A9C120E1ED43BEB00FC5AFE /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12031ED43BEB00FC5AFE /* FMDatabaseAdditions.m */; };
+		2A9C12101ED43BEB00FC5AFE /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12051ED43BEB00FC5AFE /* FMDatabasePool.m */; };
+		2A9C12121ED43BEB00FC5AFE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12071ED43BEB00FC5AFE /* FMDatabaseQueue.m */; };
+		2A9C12151ED43BEB00FC5AFE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */; };
+		2A9C121B1ED43D0400FC5AFE /* NSString+pathAnlyze.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C121A1ED43D0400FC5AFE /* NSString+pathAnlyze.m */; };
+		2A9C121E1ED43D5000FC5AFE /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C121D1ED43D5000FC5AFE /* TableController.m */; };
+		2A9C12211ED43DA800FC5AFE /* ReportProjChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12201ED43DA800FC5AFE /* ReportProjChange.m */; };
+		2A9C12271ED43E0600FC5AFE /* FileList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12261ED43E0600FC5AFE /* FileList.m */; };
+		2A9C122A1ED43E4200FC5AFE /* SampleAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12291ED43E4200FC5AFE /* SampleAnalyzer.m */; };
+		2A9C12301ED43F1500FC5AFE /* CommitFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C122F1ED43F1500FC5AFE /* CommitFile.m */; };
+		2A9C12331ED43F4B00FC5AFE /* NSData+FindFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12321ED43F4B00FC5AFE /* NSData+FindFile.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2A9C11EF1ED43B8200FC5AFE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2A9C11F11ED43B8200FC5AFE /* FileAnlyze */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FileAnlyze; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9C11F41ED43B8200FC5AFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		2A9C12001ED43BEB00FC5AFE /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		2A9C12011ED43BEB00FC5AFE /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		2A9C12021ED43BEB00FC5AFE /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		2A9C12031ED43BEB00FC5AFE /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		2A9C12041ED43BEB00FC5AFE /* FMDatabasePool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		2A9C12051ED43BEB00FC5AFE /* FMDatabasePool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		2A9C12061ED43BEB00FC5AFE /* FMDatabaseQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		2A9C12071ED43BEB00FC5AFE /* FMDatabaseQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		2A9C12081ED43BEB00FC5AFE /* FMDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		2A9C12091ED43BEB00FC5AFE /* FMResultSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		2A9C12191ED43D0400FC5AFE /* NSString+pathAnlyze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+pathAnlyze.h"; sourceTree = "<group>"; };
+		2A9C121A1ED43D0400FC5AFE /* NSString+pathAnlyze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+pathAnlyze.m"; sourceTree = "<group>"; };
+		2A9C121C1ED43D5000FC5AFE /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
+		2A9C121D1ED43D5000FC5AFE /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
+		2A9C121F1ED43DA800FC5AFE /* ReportProjChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportProjChange.h; sourceTree = "<group>"; };
+		2A9C12201ED43DA800FC5AFE /* ReportProjChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportProjChange.m; sourceTree = "<group>"; };
+		2A9C12251ED43E0600FC5AFE /* FileList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileList.h; sourceTree = "<group>"; };
+		2A9C12261ED43E0600FC5AFE /* FileList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileList.m; sourceTree = "<group>"; };
+		2A9C12281ED43E4200FC5AFE /* SampleAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleAnalyzer.h; sourceTree = "<group>"; };
+		2A9C12291ED43E4200FC5AFE /* SampleAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleAnalyzer.m; sourceTree = "<group>"; };
+		2A9C122E1ED43F1500FC5AFE /* CommitFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitFile.h; sourceTree = "<group>"; };
+		2A9C122F1ED43F1500FC5AFE /* CommitFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitFile.m; sourceTree = "<group>"; };
+		2A9C12311ED43F4B00FC5AFE /* NSData+FindFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+FindFile.h"; sourceTree = "<group>"; };
+		2A9C12321ED43F4B00FC5AFE /* NSData+FindFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+FindFile.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A9C11EE1ED43B8200FC5AFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9C11FF1ED43BBA00FC5AFE /* libsqlite3.0.tbd in Frameworks */,
+				2A9C11FD1ED43BAD00FC5AFE /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A9C11E81ED43B8200FC5AFE = {
+			isa = PBXGroup;
+			children = (
+				2A9C12001ED43BEB00FC5AFE /* FMDatabase.h */,
+				2A9C12011ED43BEB00FC5AFE /* FMDatabase.m */,
+				2A9C12021ED43BEB00FC5AFE /* FMDatabaseAdditions.h */,
+				2A9C12031ED43BEB00FC5AFE /* FMDatabaseAdditions.m */,
+				2A9C12041ED43BEB00FC5AFE /* FMDatabasePool.h */,
+				2A9C12051ED43BEB00FC5AFE /* FMDatabasePool.m */,
+				2A9C12061ED43BEB00FC5AFE /* FMDatabaseQueue.h */,
+				2A9C12071ED43BEB00FC5AFE /* FMDatabaseQueue.m */,
+				2A9C12081ED43BEB00FC5AFE /* FMDB.h */,
+				2A9C12091ED43BEB00FC5AFE /* FMResultSet.h */,
+				2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */,
+				2A9C11F31ED43B8200FC5AFE /* FileAnlyze */,
+				2A9C11F21ED43B8200FC5AFE /* Products */,
+				2A9C11FB1ED43BAD00FC5AFE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2A9C11F21ED43B8200FC5AFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A9C11F11ED43B8200FC5AFE /* FileAnlyze */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A9C11F31ED43B8200FC5AFE /* FileAnlyze */ = {
+			isa = PBXGroup;
+			children = (
+				2A9C11F41ED43B8200FC5AFE /* main.m */,
+				2A9C12191ED43D0400FC5AFE /* NSString+pathAnlyze.h */,
+				2A9C121A1ED43D0400FC5AFE /* NSString+pathAnlyze.m */,
+				2A9C121C1ED43D5000FC5AFE /* TableController.h */,
+				2A9C121D1ED43D5000FC5AFE /* TableController.m */,
+				2A9C121F1ED43DA800FC5AFE /* ReportProjChange.h */,
+				2A9C12201ED43DA800FC5AFE /* ReportProjChange.m */,
+				2A9C12251ED43E0600FC5AFE /* FileList.h */,
+				2A9C12261ED43E0600FC5AFE /* FileList.m */,
+				2A9C12281ED43E4200FC5AFE /* SampleAnalyzer.h */,
+				2A9C12291ED43E4200FC5AFE /* SampleAnalyzer.m */,
+				2A9C122E1ED43F1500FC5AFE /* CommitFile.h */,
+				2A9C122F1ED43F1500FC5AFE /* CommitFile.m */,
+				2A9C12311ED43F4B00FC5AFE /* NSData+FindFile.h */,
+				2A9C12321ED43F4B00FC5AFE /* NSData+FindFile.m */,
+			);
+			path = FileAnlyze;
+			sourceTree = "<group>";
+		};
+		2A9C11FB1ED43BAD00FC5AFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */,
+				2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A9C11F01ED43B8200FC5AFE /* FileAnlyze */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A9C11F81ED43B8200FC5AFE /* Build configuration list for PBXNativeTarget "FileAnlyze" */;
+			buildPhases = (
+				2A9C11ED1ED43B8200FC5AFE /* Sources */,
+				2A9C11EE1ED43B8200FC5AFE /* Frameworks */,
+				2A9C11EF1ED43B8200FC5AFE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FileAnlyze;
+			productName = FileAnlyze;
+			productReference = 2A9C11F11ED43B8200FC5AFE /* FileAnlyze */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A9C11E91ED43B8200FC5AFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Cisco;
+				TargetAttributes = {
+					2A9C11F01ED43B8200FC5AFE = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2A9C11EC1ED43B8200FC5AFE /* Build configuration list for PBXProject "FileAnlyze" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2A9C11E81ED43B8200FC5AFE;
+			productRefGroup = 2A9C11F21ED43B8200FC5AFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A9C11F01ED43B8200FC5AFE /* FileAnlyze */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A9C11ED1ED43B8200FC5AFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9C121E1ED43D5000FC5AFE /* TableController.m in Sources */,
+				2A9C120C1ED43BEB00FC5AFE /* FMDatabase.m in Sources */,
+				2A9C12211ED43DA800FC5AFE /* ReportProjChange.m in Sources */,
+				2A9C120E1ED43BEB00FC5AFE /* FMDatabaseAdditions.m in Sources */,
+				2A9C12101ED43BEB00FC5AFE /* FMDatabasePool.m in Sources */,
+				2A9C12271ED43E0600FC5AFE /* FileList.m in Sources */,
+				2A9C12121ED43BEB00FC5AFE /* FMDatabaseQueue.m in Sources */,
+				2A9C12151ED43BEB00FC5AFE /* FMResultSet.m in Sources */,
+				2A9C121B1ED43D0400FC5AFE /* NSString+pathAnlyze.m in Sources */,
+				2A9C122A1ED43E4200FC5AFE /* SampleAnalyzer.m in Sources */,
+				2A9C12331ED43F4B00FC5AFE /* NSData+FindFile.m in Sources */,
+				2A9C12301ED43F1500FC5AFE /* CommitFile.m in Sources */,
+				2A9C11F51ED43B8200FC5AFE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2A9C11F61ED43B8200FC5AFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2A9C11F71ED43B8200FC5AFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2A9C11F91ED43B8200FC5AFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A9C11FA1ED43B8200FC5AFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A9C11EC1ED43B8200FC5AFE /* Build configuration list for PBXProject "FileAnlyze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9C11F61ED43B8200FC5AFE /* Debug */,
+				2A9C11F71ED43B8200FC5AFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A9C11F81ED43B8200FC5AFE /* Build configuration list for PBXNativeTarget "FileAnlyze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9C11F91ED43B8200FC5AFE /* Debug */,
+				2A9C11FA1ED43B8200FC5AFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A9C11E91ED43B8200FC5AFE /* Project object */;
+}
