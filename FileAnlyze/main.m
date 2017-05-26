@@ -49,8 +49,11 @@ int main(int argc, const char * argv[]) {
         
         else
         {
-            NSMutableString *sqlitePath = [[NSMutableString alloc] initWithString:currentPath];
+            NSMutableString *sqlitePath = [currentPath deletePathComponentBeforeMeet:@"build"];
+            [sqlitePath appendString:@"/output/objs/analyze"];
+            [fm createDirectoryAtPath:sqlitePath withIntermediateDirectories:YES attributes:nil error:nil];
             [sqlitePath appendString:@"/analyzer.sqlite"];
+            
             //NSLog(@"sqlitePath %@",sqlitePath);
             if ([fm fileExistsAtPath:sqlitePath])
             {
@@ -95,16 +98,12 @@ int main(int argc, const char * argv[]) {
                 [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
                 [resultSavedPath appendString:@"/analyze_package_version.json"];
                 [control outputResultTableIntoText:resultSavedPath];
-                
-                NSLog(@"For detail, please see %@",resultSavedPath);
-                
-                // NSFileManager *fm = [NSFileManager defaultManager];
 
             }
-            if ([fm fileExistsAtPath:sqlitePath])
-            {
-                [fm removeItemAtPath:sqlitePath error:NULL];
-            }
+//            if ([fm fileExistsAtPath:sqlitePath])
+//            {
+//                [fm removeItemAtPath:sqlitePath error:NULL];
+//            }
 
         }
         
@@ -113,7 +112,11 @@ int main(int argc, const char * argv[]) {
         
         
         /////////////////////////////////////////////////////////////////////////////////////////
-        
+        NSString *string = @"agea";
+        NSArray *arr = [string componentsSeparatedByString:@"/"];
+        NSLog(@"%@ ",arr);
+        NSMutableString *a = [string deletePathComponentBeforeMeet:@"e"];
+        NSLog(@" a %@",a);
         //        NSData *data = [[NSData alloc]initWithContentsOfFile:@"/Volumes/Data/webex-mac-client/src/classic_client/as/as.xcodeproj/project.pbxproj"];
         //        NSString *a = @"/* Begin PBXGroup section */";
         //        NSData *pbx = [a dataUsingEncoding:NSUTF8StringEncoding];

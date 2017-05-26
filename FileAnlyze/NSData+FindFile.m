@@ -147,178 +147,92 @@
     else
         return nil;
 }
-//- (NSString *)nameOfDataBackwardsSearch:(NSData*)dataToFind {
-//    
+
+
+
+//- (NSString *) afterProfuctreference:(NSData *)dataToFind
+//{
 //    const void* bytes = [self bytes];
 //    NSUInteger length = [self length];
 //    const void* searchBytes = [dataToFind bytes];
 //    NSUInteger searchLength = [dataToFind length];
-//    NSUInteger searchIndex = 0;
-//    NSString *nameofData;
-//    NSData *name;
-//    NSRange foundRange = {NSNotFound, searchLength};
+//    int count = 0;
+//    NSString *libraryName;
+//    //    NSRange foundRange = {NSNotFound, searchLength};
 //    if (length < searchLength) {
-//        return nameofData;
+//        return libraryName;
 //    }
-//    for (NSInteger index = length - searchLength; index >= 0;) {
-//        //		NSLog(@"%c == %c", ((char*)bytes)[index], ((char*)searchBytes)[searchIndex]); /* DEBUG LOG */
-//        if (((char*)bytes)[index] == ((char*)searchBytes)[searchIndex]) {
+//    NSUInteger searchIndex = 0;
+//    for (NSUInteger index = 0; index < length; index++) {
+//        if (count <= MAX_COUNT_OF_PRODUCTREFERENCE)
+//        {
 //            // The current character matches.
-//            if (foundRange.location == NSNotFound) {
-//                foundRange.location = index;
+//            if (((char*)bytes)[index] == ((char*)searchBytes)[searchIndex]) {
+//                // Increment search character index to check for match.
+//                searchIndex++;
+//                
+//                // All search character match.
+//                // Break search routine and return found position.
+//                //the string productReference is found
+//                if (searchIndex >= searchLength) {
+//                    count++;
+//                    NSRange range = [self rangeInData:bytes afterIndex:index];
+//                    libraryName = [[NSString alloc] initWithData:[self subdataWithRange:range] encoding:NSUTF8StringEncoding];
+//                    if ([libraryName hasSuffix:@".a"])
+//                    {
+//                        return libraryName;
+//                    }
+//                    else
+//                    {
+//                        libraryName = nil;
+//                        searchIndex = 0;
+//                    }
+//                }
 //            }
-//            index++;
-//            searchIndex++;
-//            if (searchIndex >= searchLength) {
-//                foundRange.location = index - searchIndex + 1;
-//                foundRange.length = length - (index-searchIndex) - 1;
-//                name = [self subdataWithRange:foundRange];
-//                nameofData = [[NSString alloc] initWithData:name encoding:NSUTF8StringEncoding];
-//                return nameofData;
+//            // Match does not continue.
+//            // Return to the first search character.
+//            // Discard former found location.
+//            else {
+//                index = index - searchIndex;
+//                searchIndex = 0;
 //                
 //            }
 //        }
-//        else {
-//            // Decrement to search backwards.
-//            if (foundRange.location == NSNotFound) {
-//                // Skip if first byte has been reached.
-//                if (index == 0) {
-//                    foundRange.location = NSNotFound;
-//                    return nameofData;
-//                }
-//                index--;
-//            }
-//            // Jump over the former found location
-//            // to avoid endless loop.
-//            else {
-//                //index = index - 2;//
-//                index = index - searchIndex-1;
-//            }
-//            searchIndex = 0;
-//            foundRange.location = NSNotFound;
+//        else
+//        {
+//            break;
 //        }
+//        
 //    }
-//    return nameofData;
+//    return libraryName;
 //}
 
-//- (BOOL)iscontainsString:(NSString *)stringtoFind
-//{
-//    const void* bytes = [self bytes];
-//    NSUInteger length = [self length];
-//    NSData *stringData = [stringtoFind dataUsingEncoding:NSUTF8StringEncoding];
-//    const void* searchBytes = [stringData bytes];
-//    NSUInteger searchLength = [stringData length];
-//    NSUInteger searchIndex = 0;
-//    if (length < searchLength) {
-//        return NO;
-//    }
-//    for (NSUInteger index = 0; index < length; index++) {
-//        // The current character matches.
-//        if (((char*)bytes)[index] == ((char*)searchBytes)[searchIndex]) {
-//            // Increment search character index to check for match.
-//            searchIndex++;
-//            
-//            // All search character match.
-//            // Break search routine and return found position.
-//            if (searchIndex >= searchLength) {
-//                return YES;
-//            }
-//        }
-//        // Match does not continue.
-//        // Return to the first search character.
-//        // Discard former found location.
-//        else {
-//            index = index - searchIndex;
-//            searchIndex = 0;
-//            
-//        }
-//    }
-//    return NO;
-//}
-//this method is used to find the name of file .a which is the product of a proj
-//if the product of proj is not .a, return nil
-- (NSString *) afterProfuctreference:(NSData *)dataToFind
-{
-    const void* bytes = [self bytes];
-    NSUInteger length = [self length];
-    const void* searchBytes = [dataToFind bytes];
-    NSUInteger searchLength = [dataToFind length];
-    int count = 0;
-    NSString *libraryName;
-    //    NSRange foundRange = {NSNotFound, searchLength};
-    if (length < searchLength) {
-        return libraryName;
-    }
-    NSUInteger searchIndex = 0;
-    for (NSUInteger index = 0; index < length; index++) {
-        if (count <= MAX_COUNT_OF_PRODUCTREFERENCE)
-        {
-            // The current character matches.
-            if (((char*)bytes)[index] == ((char*)searchBytes)[searchIndex]) {
-                // Increment search character index to check for match.
-                searchIndex++;
-                
-                // All search character match.
-                // Break search routine and return found position.
-                //the string productReference is found
-                if (searchIndex >= searchLength) {
-                    count++;
-                    NSRange range = [self rangeInData:bytes afterIndex:index];
-                    libraryName = [[NSString alloc] initWithData:[self subdataWithRange:range] encoding:NSUTF8StringEncoding];
-                    if ([libraryName hasSuffix:@".a"])
-                    {
-                        return libraryName;
-                    }
-                    else
-                    {
-                        libraryName = nil;
-                        searchIndex = 0;
-                    }
-                }
-            }
-            // Match does not continue.
-            // Return to the first search character.
-            // Discard former found location.
-            else {
-                index = index - searchIndex;
-                searchIndex = 0;
-                
-            }
-        }
-        else
-        {
-            break;
-        }
-        
-    }
-    return libraryName;
-    
-}
+
 //this method is used to find the range of data in /* abcbab */, noticed that there is a blank after or before *
 
-- (NSRange) rangeInData:(const void *)byte afterIndex:(NSUInteger)index
-{
-    NSRange range = {NSNotFound,0};
-    NSInteger temp = 0;
-    for (NSInteger i = 0; i < MAX_LENGTH_OF_PATH; i++)
-    {
-        if (((char*)byte)[index+i] == '/' && ((char*)byte)[index+i+1] == '*')
-        {
-            range.location = index + i + 3;
-            break;
-        }
-    }
-    for (NSInteger i = 0; i < MAX_LENGTH_OF_PATH; i++)
-    {
-        if (((char*)byte)[index+i] == '*' && ((char*)byte)[index+i+1] == '/')
-        {
-            temp = index + i -1;
-            break;
-        }
-    }
-    range.length = temp - range.location;
-    return range;
-}
+//- (NSRange) rangeInData:(const void *)byte afterIndex:(NSUInteger)index
+//{
+//    NSRange range = {NSNotFound,0};
+//    NSInteger temp = 0;
+//    for (NSInteger i = 0; i < MAX_LENGTH_OF_PATH; i++)
+//    {
+//        if (((char*)byte)[index+i] == '/' && ((char*)byte)[index+i+1] == '*')
+//        {
+//            range.location = index + i + 3;
+//            break;
+//        }
+//    }
+//    for (NSInteger i = 0; i < MAX_LENGTH_OF_PATH; i++)
+//    {
+//        if (((char*)byte)[index+i] == '*' && ((char*)byte)[index+i+1] == '/')
+//        {
+//            temp = index + i -1;
+//            break;
+//        }
+//    }
+//    range.length = temp - range.location;
+//    return range;
+//}
 
 //find a string after index between a and b, a b must be differen.
 
@@ -347,14 +261,13 @@
             break;
         }
     }
-   
     range.length = temp - range.location;
     return range;
 }
 
 // between afterIndex and beforeIndex, find a arry with string with extention (dataExtention)
 
-- (NSMutableArray *) arryOfData:(NSData *)dataExtention afterIndex:(NSInteger)afterIndex beforeIndex:(NSInteger)beforeIndex
+- (NSMutableArray *) arryOfDataWithExtension:(NSData *)dataExtention afterIndex:(NSInteger)afterIndex beforeIndex:(NSInteger)beforeIndex
 {
     NSMutableArray *stringWithDataExtension = [NSMutableArray array];
     
@@ -475,12 +388,14 @@
             NSNumber *location = [NSNumber numberWithInteger:rangeOfdata.location];
             
             NSRange rangeOfAuthor = [self rangeAfterIndex:rangeOfdata.location between:'<' and:'>'];
+            
             NSString *authorName = nil;
             
             if (rangeOfAuthor.location != NSNotFound)
             {
                 authorName = [[NSString alloc] initWithData: [self subdataWithRange:rangeOfAuthor] encoding:NSUTF8StringEncoding];
             }
+            
             if (authorName)
             {
                 [locationsOfdata setObject:authorName forKey:location];
@@ -531,6 +446,7 @@
     }
     return range;
 }
+
 - (NSRange)rangeOfDataBackwardsSearch:(NSData*)dataToFind beforeIndex:(NSInteger) beforeindex{
     
     const void* bytes = [self bytes];
@@ -579,5 +495,63 @@
     return foundRange;
 }
 
+
+- (NSString *)findFileNameWithExtension:(NSString *)ext keyword:(NSString *)keyword {
+    
+    NSData *data = [keyword dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *result = nil;
+    NSRange rangeOfData = [self rangeOfData:data afterIndex:0 beforeIndex:[self length]];
+    while (rangeOfData.location != NSNotFound)
+    {
+        NSRange rangeOfBegin = [self rangeOfData:[@"/* " dataUsingEncoding:NSUTF8StringEncoding] afterIndex:rangeOfData.location + rangeOfData.length beforeIndex:[self length]];
+        if (rangeOfBegin.location == NSNotFound)
+            break;
+        NSRange rangeOfEnd = [self rangeOfData:[@" */" dataUsingEncoding:NSUTF8StringEncoding] afterIndex:rangeOfBegin.location beforeIndex:[self length]];
+        if (rangeOfEnd.location == NSNotFound)
+            break;
+        NSRange rangeOfReult = {rangeOfBegin.location+rangeOfBegin.length,rangeOfEnd.location - (rangeOfBegin.location+rangeOfBegin.length)};
+        
+        result = [[NSString alloc] initWithData:[self subdataWithRange:rangeOfReult] encoding:NSUTF8StringEncoding];
+        if ([result hasSuffix:ext])
+        {
+            return result;
+        }
+        else
+            result = nil;
+        
+        rangeOfData = [self rangeOfData:data afterIndex:rangeOfEnd.location beforeIndex:[self length]];
+    }
+    
+    return result;
+}
+
+//- (NSString *) findDataAfter:(NSData *)data withExtension:(NSString *)extension
+//{
+//    NSString *result = nil;
+//    NSRange rangeOfData = [self rangeOfData:data afterIndex:0 beforeIndex:[self length]];
+//    while (rangeOfData.location != NSNotFound)
+//    {
+//        NSRange rangeOfBegin = [self rangeOfData:[@"/* " dataUsingEncoding:NSUTF8StringEncoding] afterIndex:rangeOfData.location + rangeOfData.length beforeIndex:[self length]];
+//        if (rangeOfBegin.location == NSNotFound)
+//            break;
+//        NSRange rangeOfEnd = [self rangeOfData:[@" */" dataUsingEncoding:NSUTF8StringEncoding] afterIndex:rangeOfBegin.location beforeIndex:[self length]];
+//        if (rangeOfEnd.location == NSNotFound)
+//            break;
+//        NSRange rangeOfReult = {rangeOfBegin.location+rangeOfBegin.length,rangeOfEnd.location - (rangeOfBegin.location+rangeOfBegin.length)};
+//        
+//        result = [[NSString alloc] initWithData:[self subdataWithRange:rangeOfReult] encoding:NSUTF8StringEncoding];
+//        if ([result hasSuffix:extension])
+//        {
+//            return result;
+//        }
+//        else
+//            result = nil;
+//        
+//        rangeOfData = [self rangeOfData:data afterIndex:rangeOfEnd.location beforeIndex:[self length]];
+//    }
+//    
+//    return result;
+//}
 
 @end

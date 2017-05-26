@@ -42,8 +42,9 @@
             self.libraryName = [NSString string];
             self.plistList = [NSMutableDictionary dictionary];
             
-            NSData *productReference = [@"productReference" dataUsingEncoding:NSUTF8StringEncoding];
-            self.libraryName = [data afterProfuctreference:productReference];
+            //NSData *productReference = [@"productReference" dataUsingEncoding:NSUTF8StringEncoding];
+           
+            self.libraryName = [data findFileNameWithExtension:@".a" keyword:@"productReference"];
             
             [self updateInfoFrom:data andSqilitePath:sqlitePath];
         }

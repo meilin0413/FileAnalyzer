@@ -15,25 +15,20 @@
 
 
 @interface NSData (FindFile)
-//- (NSMutableArray *)rangeOfData:(NSData*)dataToFind and: (BOOL) type;
-//- (NSString *) dateOfRange:(NSUInteger)index and:(const void *)byte and:(BOOL) type;
-//- (NSString *)nameOfDataBackwardsSearch:(NSData*)dataToFind;
-//- (BOOL)iscontainsString:(NSString *)string;
 
-//this method is used to find productREference =..../*  ...  */
-//we need the content of /* ... */
-//the count of productReference is at max 2
 
-- (NSString *) afterProfuctreference:(NSData *)dataToFind;
-
+//- (NSString *) afterProfuctreference:(NSData *)dataToFind;
 - (NSRange)rangeOfData:(NSData *)dataToFind afterIndex:(NSInteger)index;
 
+//find the data .... /* ..... */, between /* and */.
+- (NSString *)findFileNameWithExtension:(NSString *)ext keyword:(NSString *)keyword;
 
 
 //For Commit File
 - (NSRange) rangeAfterIndex:(NSUInteger)index between:(char)a and:(char)b;
 - (NSRange) beforeKeyDataRange:(NSRange)keyDataRange untilMeet:(char)a;
-- (NSMutableArray *)arryOfData:(NSData *)dataExtention afterIndex:(NSInteger)afterIndex beforeIndex:(NSInteger)beforeIndex;
+
+- (NSMutableArray *)arryOfDataWithExtension:(NSData *)dataExtention afterIndex:(NSInteger)afterIndex beforeIndex:(NSInteger)beforeIndex;
 - (NSMutableDictionary *) locationOfData:(NSData *)dataToFind;
 
 

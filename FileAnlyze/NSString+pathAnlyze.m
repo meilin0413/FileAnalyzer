@@ -10,6 +10,7 @@
 
 @implementation NSString (pathAnlyze)
 
+//if component do not exist, return self
 - (NSMutableString *)deletePathComponentBeforeMeet:(NSString *)component
 {
     NSArray *pathComponents = [self componentsSeparatedByString:@"/"];

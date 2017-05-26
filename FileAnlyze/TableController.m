@@ -285,7 +285,7 @@
     NSInteger tmpCount = 0;
     for (NSString *string in pathComponent)
     {
-        if ([string isEqualToString:@"src"] || [string isEqualToString:@"build"])
+        if ([string isEqualToString:@"src"] || [string isEqualToString:@"build"] || [string isEqualToString:@"output"])
         {
             break;
         }
@@ -346,7 +346,7 @@
         }
         else
         {
-            NSLog(@"There are some versions needed to be changed!");
+            NSLog(@"There are some versions needed to be changed! For detail, please see %@",textPath);
         }
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -479,14 +479,10 @@
             if (![arrForGroups containsObject:[set stringForColumn:@"groupId"]])
             {
                 [arrForGroups addObject:[set stringForColumn:@"groupId"]];
-                
             }
-            
         }
-        
         NSMutableDictionary *dicForGroup = [NSMutableDictionary dictionary];
         //NSInteger index = 0;
-        
         [self.db beginTransaction];
         for (NSString *string in arrForGroups)
         {
@@ -512,9 +508,7 @@
                 
                 NSString *absolutePath = [path stringByStandardizingPath];
                 path = absolutePath;
-                
             }
-            
             else
             {
                 FMResultSet *set = [db executeQuery:@"select * from fileAnalyze where childrenId=?",string];
@@ -573,15 +567,8 @@
                     [dicForGroup setObject:path forKey:string];
                     // NSLog(@"path %@",path);
                 }
-                
             }
-            
-            
-            //[db executeUpdate:@"alter table fileAnalyze add column absoulutePath text"];
-            
-            // [db executeUpdate:@"update fileAnalyze set path=? where groupName=?",path,string];
         }
-        // NSLog(@"dic %@",dicForGroup);
         
         for (NSString *key in dicForGroup)
         {
@@ -591,8 +578,6 @@
     }
     
     [self.db close];
-    
-    
 }
 
 - (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath
@@ -628,7 +613,6 @@
             
             [arr addObject:path];
         }
-        //[self dropFileTable];
     }
     [self.db close];
     
@@ -663,11 +647,6 @@
                 while ([libraryProjsChange next])
                 {
                     NSString *libName = [libraryProjsChange stringForColumn:@"libraryName"];
-                    
-                    //  FMResultSet *libPath = [db executeQuery:@"select filePath from filePathTable where fileName=?",libName];
-                    //  while ([libPath next])
-                    // {
-                    // NSString *libPathString = [libPath stringForColumn:@"filePath"];
                     
                     FMResultSet *projsRelatedToLibPath = [self.db executeQuery:@"select projName from relationshipTable where filePath=?",libName];
                     

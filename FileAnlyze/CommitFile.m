@@ -57,11 +57,10 @@
 {
     NSData *commitData = [[NSData alloc] initWithContentsOfFile:_commitPath];
     NSData *authorData = [[CommitFile authorString] dataUsingEncoding:NSUTF8StringEncoding];
+    // return anthor name and location
     NSMutableDictionary *locationsForAuthors = [commitData locationOfData:authorData];
     NSArray *keys = [locationsForAuthors allKeys];
-    
     keys = [keys sortedArrayUsingComparator:^(id obj1,id obj2){return [obj1 compare:obj2];}];
-    
     NSArray *extensionString = [CommitFile extensionString];
     
     for (NSInteger index = 0; index < [keys count];index++)
@@ -76,17 +75,17 @@
             
             if (index < [keys count] -1)
             {
-                if ([[commitData arryOfData:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[[keys objectAtIndex:(index+1)] integerValue]] count] != 0)
+                if ([[commitData arryOfDataWithExtension:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[[keys objectAtIndex:(index+1)] integerValue]] count] != 0)
                 {
-                    [commitFileForauthor addObjectsFromArray:[commitData arryOfData:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[[keys objectAtIndex:(index+1)] integerValue]]];
+                    [commitFileForauthor addObjectsFromArray:[commitData arryOfDataWithExtension:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[[keys objectAtIndex:(index+1)] integerValue]]];
                 }
                 
             }
             else
             {
-                if ([[commitData arryOfData:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[commitData length]] count] != 0)
+                if ([[commitData arryOfDataWithExtension:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[commitData length]] count] != 0)
                 {
-                    [commitFileForauthor addObjectsFromArray:[commitData arryOfData:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[commitData length]]];
+                    [commitFileForauthor addObjectsFromArray:[commitData arryOfDataWithExtension:extensionData afterIndex:[[keys objectAtIndex:index] integerValue] beforeIndex:[commitData length]]];
                 }
                 
             }
@@ -100,8 +99,8 @@
             {
                 if ([file containsString:@".framework"])
                 {
-                    NSString *new = [file lastPathComponent];
-                    [commitFileForauthor replaceObjectAtIndex:index withObject:new];
+//                    NSString *new = [file lastPathComponent];
+                    [commitFileForauthor replaceObjectAtIndex:index withObject:[file lastPathComponent]];
                 }
                 index++;
             }
