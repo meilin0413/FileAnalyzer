@@ -295,6 +295,7 @@
     
 }
 //this method is used to find the range of data in /* abcbab */, noticed that there is a blank after or before *
+
 - (NSRange) rangeInData:(const void *)byte afterIndex:(NSUInteger)index
 {
     NSRange range = {NSNotFound,0};
@@ -318,6 +319,7 @@
     range.length = temp - range.location;
     return range;
 }
+
 //find a string after index between a and b, a b must be differen.
 
 - (NSRange) rangeAfterIndex:(NSUInteger)index between:(char)a and:(char)b
@@ -400,34 +402,37 @@
 
 - (NSRange)rangeOfData:(NSData *)dataToFind afterIndex:(NSInteger)index
 {
-    const void *bytes = [self bytes];
-    NSUInteger length = [self length];
-    const void *searchBytes = [dataToFind bytes];
-    NSUInteger lengthOfDataToFind = [dataToFind length];
+//    const void *bytes = [self bytes];
+//    NSUInteger length = [self length];
+//    const void *searchBytes = [dataToFind bytes];
+//    NSUInteger lengthOfDataToFind = [dataToFind length];
     
-    NSRange range = {NSNotFound,lengthOfDataToFind};
-    NSUInteger searchIndex = 0;
-    if (lengthOfDataToFind > (length - index))
-        return range;
-    for (NSUInteger indexTemp = index; indexTemp < length;indexTemp++)
-    {
-        if (((char*)bytes)[indexTemp] == ((char*)searchBytes)[searchIndex])
-        {
-            if (range.location == NSNotFound)
-                range.location = indexTemp;
-            searchIndex++;
-            if (searchIndex >= lengthOfDataToFind)
-            {
-                return range;
-            }
-        }
-        else
-        {
-            indexTemp = indexTemp - searchIndex;
-            searchIndex = 0;
-            range.location = NSNotFound;
-        }
-    }
+    NSRange range = {NSNotFound,[dataToFind length]};
+    range = [self rangeOfData:dataToFind afterIndex:index beforeIndex:[self length]];
+    
+//    NSUInteger searchIndex = 0;
+//    
+//    if (lengthOfDataToFind > (length - index))
+//        return range;
+//    for (NSUInteger indexTemp = index; indexTemp < length;indexTemp++)
+//    {
+//        if (((char*)bytes)[indexTemp] == ((char*)searchBytes)[searchIndex])
+//        {
+//            if (range.location == NSNotFound)
+//                range.location = indexTemp;
+//            searchIndex++;
+//            if (searchIndex >= lengthOfDataToFind)
+//            {
+//                return range;
+//            }
+//        }
+//        else
+//        {
+//            indexTemp = indexTemp - searchIndex;
+//            searchIndex = 0;
+//            range.location = NSNotFound;
+//        }
+//    }
     return range;
 }
 
@@ -468,8 +473,10 @@
         {
             index = rangeOfdata.location + MIN_AUTHOR_COMMIT_LENGTH;
             NSNumber *location = [NSNumber numberWithInteger:rangeOfdata.location];
+            
             NSRange rangeOfAuthor = [self rangeAfterIndex:rangeOfdata.location between:'<' and:'>'];
             NSString *authorName = nil;
+            
             if (rangeOfAuthor.location != NSNotFound)
             {
                 authorName = [[NSString alloc] initWithData: [self subdataWithRange:rangeOfAuthor] encoding:NSUTF8StringEncoding];
@@ -497,6 +504,7 @@
     
     NSRange range = {NSNotFound,lengthOfDataToFind};
     NSUInteger searchIndex = 0;
+    
     if (lengthOfDataToFind > (length - index))
         return range;
     if (beforIndex - index < 0)

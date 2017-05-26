@@ -39,7 +39,7 @@
     {
         sqlitePath = path;
         self.db = [FMDatabase databaseWithPath:sqlitePath];
-        //[self.db open];
+        
         
     }
     return self;
@@ -82,10 +82,6 @@
         //relationship table
         for (NSString *filepath in sample.projContent)
         {
-            //[db executeUpdate:@"insert into filePathTable(filePath,fileName) values(?,?)",filepath,[filepath lastPathComponent]];
-            //result = [db executeQuery:@"select id from relationshipTable where projName=? and filePath=?",projName,filepath];
-            //if ([result next]){}
-            //else
             [self.db executeUpdate:@"insert into relationshipTable(projName,filePath) values(?,?)",sample.projName,filepath];
             
         }
@@ -93,10 +89,7 @@
         for (NSString *key in sample.plistList)
         {
             [self.db executeUpdate:@"insert into plistTable(plistPath,projName,plistDate) values(?,?,?)",key,sample.projName,[sample.plistList objectForKey:key]];
-    
-            
         }
-        
         if (sample.libraryName)
         {
             [self.db executeUpdate:@"insert into libraryTable(libraryName,belongToProj) values(?,?)",sample.libraryName,sample.projName];
@@ -353,7 +346,7 @@
         }
         else
         {
-            NSLog(@"There are some versions needed to be changed! Please see /output/analyze/analyze_package_version.json");
+            NSLog(@"There are some versions needed to be changed!");
         }
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];

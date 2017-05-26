@@ -52,10 +52,19 @@ int main(int argc, const char * argv[]) {
             NSMutableString *sqlitePath = [[NSMutableString alloc] initWithString:currentPath];
             [sqlitePath appendString:@"/analyzer.sqlite"];
             //NSLog(@"sqlitePath %@",sqlitePath);
+            if ([fm fileExistsAtPath:sqlitePath])
+            {
+                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
+                [control dropAllTable];
+                [control creatAllTable];
+            }
+            else
+            {
+                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
+                [control creatAllTable];
+            }
             
             TableController *control = [[TableController alloc] initTableWith:sqlitePath];
-           // [control dropAllTable];
-            [control creatAllTable];
             
             CommitFile *commitFile = [[CommitFile alloc] initWithPath:commitFilePath andSqlitePath:sqlitePath];
             [commitFile addCommitInfoIntoCommitTable];
@@ -75,7 +84,9 @@ int main(int argc, const char * argv[]) {
             
                 NSLog(@"Begin analyze ...");
                 ReportProjChange *change = [[ReportProjChange alloc] initWithSqlitePath:sqlitePath];
+                
                 [change AuthorChangeForProjs];
+                
                 NSLog(@"End analyze.");
                 
                 NSMutableString *resultSavedPath = [currentPath deletePathComponentBeforeMeet:@"build"];
@@ -84,6 +95,8 @@ int main(int argc, const char * argv[]) {
                 [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
                 [resultSavedPath appendString:@"/analyze_package_version.json"];
                 [control outputResultTableIntoText:resultSavedPath];
+                
+                NSLog(@"For detail, please see %@",resultSavedPath);
                 
                 // NSFileManager *fm = [NSFileManager defaultManager];
 
@@ -118,7 +131,7 @@ int main(int argc, const char * argv[]) {
 //        [file addFileToFileTable];
 //
 //        CommitFile *commitFile = [[CommitFile alloc] initWithPath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/datasourece/commitFile.txt" andSqlitePath:@"/Volumes/Data/myproject/FileAnlyze/fileAnalyzer.sqlite"];
-//        
+////
 //        [commitFile addCommitInfoIntoCommitTable];
 
 //        ReportProjChange *change = [[ReportProjChange alloc] initWithSqlitePath:@"/Volumes/Data/myproject/FileAnlyze/fileAnalyzer.sqlite"];

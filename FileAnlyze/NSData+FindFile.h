@@ -25,6 +25,7 @@
 //the count of productReference is at max 2
 
 - (NSString *) afterProfuctreference:(NSData *)dataToFind;
+
 - (NSRange)rangeOfData:(NSData *)dataToFind afterIndex:(NSInteger)index;
 
 
