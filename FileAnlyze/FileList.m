@@ -81,10 +81,13 @@
     
     
     NSLog(@"Begin update table...");
+    
+    [control open];
     for (SampleAnalyzer *proj in arr)
     {
         [control updateAllTable:proj];
     }
+    [control close];
     NSLog(@"End update table!");
 
     

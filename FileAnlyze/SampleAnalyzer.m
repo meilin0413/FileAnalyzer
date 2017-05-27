@@ -43,10 +43,14 @@
             self.plistList = [NSMutableDictionary dictionary];
             
             //NSData *productReference = [@"productReference" dataUsingEncoding:NSUTF8StringEncoding];
-           
-            self.libraryName = [data findFileNameWithExtension:@".a" keyword:@"productReference"];
+            NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+                 self.libraryName = [data findFileNameWithExtension:@".a" keyword:@"productReference"];
+            }];
+            [operation addExecutionBlock:^{
+                [self updateInfoFrom:data andSqilitePath:sqlitePath];
+            }];
+            [operation start];
             
-            [self updateInfoFrom:data andSqilitePath:sqlitePath];
         }
         else
             return nil;
@@ -214,21 +218,16 @@
 
 - (NSMutableArray *)findGroupsInProj:(NSData *)data
 {
-    //FMDatabase *db = [FMDatabase databaseWithPath:tablePath];
-    
     NSData *pathData = [@"path = " dataUsingEncoding:NSUTF8StringEncoding];
     NSData *sourceTree = [@"sourceTree = " dataUsingEncoding:NSUTF8StringEncoding];
     NSData *pbxGroupBegin = [@"/* Begin PBXGroup section */" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *pbxGroupEnd = [@"/* End PBXGroup section */" dataUsingEncoding:NSUTF8StringEncoding];
-    
     NSRange rangeOfGroupBegin = [data rangeOfData:pbxGroupBegin afterIndex:0 beforeIndex:[data length]];
     NSRange rangeOfGroupEnd = [data rangeOfData:pbxGroupEnd afterIndex:rangeOfGroupBegin.location+rangeOfGroupBegin.length beforeIndex:[data length]];
-
     NSInteger index = rangeOfGroupBegin.location+rangeOfGroupBegin.length;
     NSInteger count = 0;
     NSUInteger tmp = 0;
     NSMutableArray *arrForGroups = [NSMutableArray array];
-    
     while (index < rangeOfGroupEnd.location)
     {
         NSRange rangeOfGroupBodyBegin = [data rangeOfData:[@"{" dataUsingEncoding:NSUTF8StringEncoding] afterIndex:index beforeIndex:rangeOfGroupEnd.location];
@@ -240,12 +239,10 @@
         }
         else
             locationRangeOfGroup = tmp;
-        
         NSRange rangeOfGroupNameBefore = [data rangeOfData:[@"/* " dataUsingEncoding:NSUTF8StringEncoding] afterIndex:locationRangeOfGroup beforeIndex:rangeOfGroupBodyBegin.location];
         
         NSString *groupId = nil;
         NSRange rangeOfGroupId = {0,24};
-        
         if (rangeOfGroupNameBefore.location != NSNotFound)
         {
             rangeOfGroupId.location = rangeOfGroupNameBefore.location - 25;

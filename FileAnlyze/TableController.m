@@ -17,20 +17,15 @@
 + (NSString *)dateForNow
 {
     NSDate *now = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-   // NSLog(@"zone %@",zone);
     
-    NSInteger inter = [zone secondsFromGMT];
-    inter = -inter;
-    NSDate *nowForGMT = [now dateByAddingTimeInterval:inter];
-    NSDate *nowForChina = [nowForGMT dateByAddingTimeInterval:8*3600];
-
+    NSTimeZone *zone = [[NSTimeZone alloc]initWithName:@"Asia/Shanghai"];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyMM.dd";
-    NSString *dateNow = [formatter stringFromDate:nowForChina];
-    //NSLog(@"Now %@",dateNow);
+    formatter.timeZone = zone;
+    NSString *dateNow = [formatter stringFromDate:now];
+    return dateNow;
     
-    return dateNow;  
 }
 - (id)initTableWith:(NSString *)path
 {
@@ -46,10 +41,12 @@
 }
 - (void)open {
     [self.db open];
+    [self.db beginTransaction];
     
 }
 - (void)close
 {
+    [self.db commit];
     [self.db close];
 }
 - (void)creatAllTable
@@ -72,9 +69,9 @@
 - (void)updateAllTable:(SampleAnalyzer *)sample
 {
     //    FMResultSet *result;
-    if ([self.db open])
-    {
-        [self.db beginTransaction];
+//    if ([self.db open])
+//    {
+      //  [self.db beginTransaction];
         
         [self.db executeUpdate:@"insert into projTable(projName) values(?)",sample.projName];
         
@@ -94,9 +91,9 @@
         {
             [self.db executeUpdate:@"insert into libraryTable(libraryName,belongToProj) values(?,?)",sample.libraryName,sample.projName];
         }
-        [self.db commit];
-    }
-    [self.db close];
+  //      [self.db commit];
+//    }
+//    [self.db close];
 
 }
 //drop all table
@@ -412,6 +409,7 @@
         //[string writeToFile:textPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
         [jsonString writeToFile:textPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"%@",jsonString);
     }
     [self.db close];
     

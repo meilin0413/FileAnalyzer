@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
         //        CommitFile *cm = [[CommitFile alloc] initWithPath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/datasourece/commitFile.txt" andSqlitePath:@"/Volumes/Data/webex-mac-client/build/mac/analyzers/version/fileAnalyzer.sqlite"];
         //
         
-        /////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
         NSDate *date = [NSDate date];
         NSFileManager *filemgr = [[NSFileManager alloc] init];
         NSString *currentPath = [filemgr currentDirectoryPath];
@@ -98,26 +98,19 @@ int main(int argc, const char * argv[]) {
                 [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
                 [resultSavedPath appendString:@"/analyze_package_version.json"];
                 [control outputResultTableIntoText:resultSavedPath];
-
             }
-//            if ([fm fileExistsAtPath:sqlitePath])
-//            {
-//                [fm removeItemAtPath:sqlitePath error:NULL];
-//            }
-
         }
-        
         double time = [[NSDate date] timeIntervalSinceDate:date];
         NSLog(@"run time is：%f",time);
         
         
-        /////////////////////////////////////////////////////////////////////////////////////////
-        NSString *string = @"agea";
-        NSArray *arr = [string componentsSeparatedByString:@"/"];
-        NSLog(@"%@ ",arr);
-        NSMutableString *a = [string deletePathComponentBeforeMeet:@"e"];
-        NSLog(@" a %@",a);
-        //        NSData *data = [[NSData alloc]initWithContentsOfFile:@"/Volumes/Data/webex-mac-client/src/classic_client/as/as.xcodeproj/project.pbxproj"];
+/////////////////////////////////////////////////////////////////////////////////////////////
+//        NSString *string = @"agea";
+//        NSArray *arr = [string componentsSeparatedByString:@"/"];
+//        NSLog(@"%@ ",arr);
+//        NSMutableString *a = [string deletePathComponentBeforeMeet:@"e"];
+//        NSLog(@" a %@",a);
+//        //        NSData *data = [[NSData alloc]initWithContentsOfFile:@"/Volumes/Data/webex-mac-client/src/classic_client/as/as.xcodeproj/project.pbxproj"];
         //        NSString *a = @"/* Begin PBXGroup section */";
         //        NSData *pbx = [a dataUsingEncoding:NSUTF8StringEncoding];
         //
@@ -339,36 +332,48 @@ int main(int argc, const char * argv[]) {
         //        }
         //        [db close];
         
+       
+//        NSFileManager *fm = [NSFileManager defaultManager];
+//        NSDictionary *dic = [fm attributesOfItemAtPath:@"/Volumes/Data/webex-mac-client/dependencies/libs/libconfmgr.a" error:nil];
+//        NSLog(@"dic %@",dic);
+//        NSDate *modificationDate = [dic objectForKey:@"NSFileModificationDate"];
+//        NSLog(@"modification date %@",modificationDate);
+//        
+//        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//        NSInteger inter = [zone secondsFromGMT];
+//        inter = -inter;
+//        NSDate *nowForGMT = [modificationDate dateByAddingTimeInterval:inter];
+//        NSDate *nowForChina = [nowForGMT dateByAddingTimeInterval:8*3600];
+//        
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"yyMM.dd";
+//        NSString *dateNow = [formatter stringFromDate:nowForChina];
+//        
+//        NSLog(@"date now %@",dateNow);
         
-        //
-        //        CommitFile *commit = [[CommitFile alloc] initWithPath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/datasourece/commitFile.txt"];
-        //        NSLog(@"author is %@",[commit author]);
-        //
-        
-        //        TableController *controller = [[TableController alloc] initTableWith:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/fileAnalyzer.sqlite"];
-        //       [controller dropCommitTable];
-        //       [controller creatCommitTable];
-        ////
-        //        CommitFile *cm = [[CommitFile alloc] initWithPath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/datasourece/commitFile.txt" andSqlitePath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/fileAnalyzer.sqlite"];
-        //        //[controller creatResultTable];
-        //        
-        //        ReportProjChange *change = [[ReportProjChange alloc] initWithSqlitePath:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/fileAnalyzer.sqlite"];
-        //        [change AuthorChangeForProjs];
+//        NSDate *now = [NSDate date];
+//        
+//        NSTimeZone *zone = [[NSTimeZone alloc]initWithName:@"Asia/Shanghai"];
+//        //NSTimeZone *zone = [[NSTimeZone alloc]initWithName:@"America/New_York"];
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"yyMM.dd.HH";
+//        formatter.timeZone = zone;
+//        NSString *dateNow = [formatter stringFromDate:now];
+//        NSLog(@"date now %@",dateNow);
+       
         
         
         
-        //        NSData *data = [[NSData alloc] initWithContentsOfFile:@"/Volumes/Data/myproject/PROJCommitFile/FileAnalyzer/datasourece/commitFile2.txt"];
-        //        const void* bytes = [data bytes];
-        //        if (((char*)bytes)[1] == (char)9)
-        //        {
-        //            NSLog(@"YES");
-        //        }
-        //            
-        //            
-        //        NSLog(@"char is %i",(int)((char*)bytes)[1]);
-        //        
-        //        NSLog(@"data :%@",data);
-        //   
+       // NSDate *d = [formatter dateFromString:[dic objectForKey:@"NSFileModificationDate"]];
+        
+       // NSLog(@"d %@",d);
+//        NSString *strDate = @"Tue Mar 07 16:21:32 +0800 2017";
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"EEE MMM dd HH:mm:ss ZZZ yyyy";
+//        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//        NSDate *date = [formatter dateFromString:strDate];
+//        NSLog(@"date %@",date);
+        
     }
     return 0;
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3E9BAB1ED90501006F21A2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */; };
+		2A3E9BAC1ED9051B006F21A2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */; };
+		2A3E9BAD1ED9055E006F21A2 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C121D1ED43D5000FC5AFE /* TableController.m */; };
+		2A3E9BAE1ED9058D006F21A2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12011ED43BEB00FC5AFE /* FMDatabase.m */; };
+		2A3E9BAF1ED905A2006F21A2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */; };
 		2A9C11F51ED43B8200FC5AFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C11F41ED43B8200FC5AFE /* main.m */; };
 		2A9C11FD1ED43BAD00FC5AFE /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */; };
 		2A9C11FF1ED43BBA00FC5AFE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */; };
@@ -22,6 +27,10 @@
 		2A9C122A1ED43E4200FC5AFE /* SampleAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12291ED43E4200FC5AFE /* SampleAnalyzer.m */; };
 		2A9C12301ED43F1500FC5AFE /* CommitFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C122F1ED43F1500FC5AFE /* CommitFile.m */; };
 		2A9C12331ED43F4B00FC5AFE /* NSData+FindFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12321ED43F4B00FC5AFE /* NSData+FindFile.m */; };
+		2AD69CDE1ED82875007C62A5 /* FileAnalyzeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69CDD1ED82875007C62A5 /* FileAnalyzeTests.m */; };
+		2AD69CE31ED82B12007C62A5 /* NSString+pathAnlyze.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C121A1ED43D0400FC5AFE /* NSString+pathAnlyze.m */; };
+		2AD69CE51ED82CE2007C62A5 /* NSString+pathAnalyzeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69CE41ED82CE2007C62A5 /* NSString+pathAnalyzeTest.m */; };
+		2AD69CE71ED82F77007C62A5 /* TableControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69CE61ED82F77007C62A5 /* TableControllerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +75,11 @@
 		2A9C122F1ED43F1500FC5AFE /* CommitFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitFile.m; sourceTree = "<group>"; };
 		2A9C12311ED43F4B00FC5AFE /* NSData+FindFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+FindFile.h"; sourceTree = "<group>"; };
 		2A9C12321ED43F4B00FC5AFE /* NSData+FindFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+FindFile.m"; sourceTree = "<group>"; };
+		2AD69CDB1ED82875007C62A5 /* FileAnalyzeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileAnalyzeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AD69CDD1ED82875007C62A5 /* FileAnalyzeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileAnalyzeTests.m; sourceTree = "<group>"; };
+		2AD69CDF1ED82875007C62A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AD69CE41ED82CE2007C62A5 /* NSString+pathAnalyzeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+pathAnalyzeTest.m"; path = "../NSString+pathAnalyzeTest.m"; sourceTree = "<group>"; };
+		2AD69CE61ED82F77007C62A5 /* TableControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableControllerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,15 @@
 			files = (
 				2A9C11FF1ED43BBA00FC5AFE /* libsqlite3.0.tbd in Frameworks */,
 				2A9C11FD1ED43BAD00FC5AFE /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AD69CD81ED82875007C62A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A3E9BAC1ED9051B006F21A2 /* libsqlite3.0.tbd in Frameworks */,
+				2A3E9BAB1ED90501006F21A2 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +119,7 @@
 				2A9C12091ED43BEB00FC5AFE /* FMResultSet.h */,
 				2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */,
 				2A9C11F31ED43B8200FC5AFE /* FileAnlyze */,
+				2AD69CDC1ED82875007C62A5 /* FileAnalyzeTests */,
 				2A9C11F21ED43B8200FC5AFE /* Products */,
 				2A9C11FB1ED43BAD00FC5AFE /* Frameworks */,
 			);
@@ -105,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9C11F11ED43B8200FC5AFE /* FileAnlyze */,
+				2AD69CDB1ED82875007C62A5 /* FileAnalyzeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +165,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2AD69CDC1ED82875007C62A5 /* FileAnalyzeTests */ = {
+			isa = PBXGroup;
+			children = (
+				2AD69CE41ED82CE2007C62A5 /* NSString+pathAnalyzeTest.m */,
+				2AD69CE61ED82F77007C62A5 /* TableControllerTest.m */,
+				2AD69CDD1ED82875007C62A5 /* FileAnalyzeTests.m */,
+				2AD69CDF1ED82875007C62A5 /* Info.plist */,
+			);
+			path = FileAnalyzeTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,6 +196,23 @@
 			productReference = 2A9C11F11ED43B8200FC5AFE /* FileAnlyze */;
 			productType = "com.apple.product-type.tool";
 		};
+		2AD69CDA1ED82875007C62A5 /* FileAnalyzeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AD69CE21ED82875007C62A5 /* Build configuration list for PBXNativeTarget "FileAnalyzeTests" */;
+			buildPhases = (
+				2AD69CD71ED82875007C62A5 /* Sources */,
+				2AD69CD81ED82875007C62A5 /* Frameworks */,
+				2AD69CD91ED82875007C62A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FileAnalyzeTests;
+			productName = FileAnalyzeTests;
+			productReference = 2AD69CDB1ED82875007C62A5 /* FileAnalyzeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,6 +223,10 @@
 				ORGANIZATIONNAME = Cisco;
 				TargetAttributes = {
 					2A9C11F01ED43B8200FC5AFE = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					2AD69CDA1ED82875007C62A5 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -188,9 +245,20 @@
 			projectRoot = "";
 			targets = (
 				2A9C11F01ED43B8200FC5AFE /* FileAnlyze */,
+				2AD69CDA1ED82875007C62A5 /* FileAnalyzeTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2AD69CD91ED82875007C62A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A9C11ED1ED43B8200FC5AFE /* Sources */ = {
@@ -210,6 +278,20 @@
 				2A9C12331ED43F4B00FC5AFE /* NSData+FindFile.m in Sources */,
 				2A9C12301ED43F1500FC5AFE /* CommitFile.m in Sources */,
 				2A9C11F51ED43B8200FC5AFE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AD69CD71ED82875007C62A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AD69CE71ED82F77007C62A5 /* TableControllerTest.m in Sources */,
+				2AD69CDE1ED82875007C62A5 /* FileAnalyzeTests.m in Sources */,
+				2A3E9BAF1ED905A2006F21A2 /* FMResultSet.m in Sources */,
+				2AD69CE51ED82CE2007C62A5 /* NSString+pathAnalyzeTest.m in Sources */,
+				2A3E9BAE1ED9058D006F21A2 /* FMDatabase.m in Sources */,
+				2A3E9BAD1ED9055E006F21A2 /* TableController.m in Sources */,
+				2AD69CE31ED82B12007C62A5 /* NSString+pathAnlyze.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +401,28 @@
 			};
 			name = Release;
 		};
+		2AD69CE01ED82875007C62A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FileAnalyzeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cisco.webex.FileAnalyzeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2AD69CE11ED82875007C62A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FileAnalyzeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cisco.webex.FileAnalyzeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -336,6 +440,15 @@
 			buildConfigurations = (
 				2A9C11F91ED43B8200FC5AFE /* Debug */,
 				2A9C11FA1ED43B8200FC5AFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AD69CE21ED82875007C62A5 /* Build configuration list for PBXNativeTarget "FileAnalyzeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AD69CE01ED82875007C62A5 /* Debug */,
+				2AD69CE11ED82875007C62A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
