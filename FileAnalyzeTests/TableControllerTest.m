@@ -43,8 +43,7 @@
 {
     NSString *expectedResult = @"1705.27";
     NSString *result = [TableController dateForNow];
-   // NSString *result = @"1705.26";
     XCTAssertEqualObjects(expectedResult, result);
-    
 }
+- (void)test
 @end

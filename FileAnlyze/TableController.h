@@ -24,7 +24,9 @@
 - (void)updateFileTable:(NSMutableArray *)arrForFiles and:(NSMutableArray *)arrForGroups;
 
 - (void)findGroupPathFromMainPath:(NSString *)mainPath andMainGroupId:(NSString *)mainGroupId;
-- (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath;
+
+- (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath andBuildPath:(NSString *)buildPath;
+
 
 - (void)creatAllTable;
 - (void)updateAllTable:(SampleAnalyzer *)sample;

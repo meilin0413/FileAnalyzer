@@ -7,7 +7,7 @@
 //
 
 #import "SampleAnalyzer.h"
-//#import "NSMutbleArray+delteUnuseful.h"
+#import "NSString+pathAnlyze.h"
 #import "TableController.h"
 @interface SampleAnalyzer ()
 
@@ -44,12 +44,18 @@
             
             //NSData *productReference = [@"productReference" dataUsingEncoding:NSUTF8StringEncoding];
             NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-                 self.libraryName = [data findFileNameWithExtension:@".a" keyword:@"productReference"];
+                self.libraryName = [data findFileNameWithExtension:@".a" keyword:@"productReference"];
+                if (self.libraryName)
+                {
+                    self.libraryName = [[self buildPath] stringByAppendingFormat:@"/%@",self.libraryName];
+                }
             }];
+            
             [operation addExecutionBlock:^{
                 [self updateInfoFrom:data andSqilitePath:sqlitePath];
             }];
             [operation start];
+            
             
         }
         else
@@ -80,7 +86,12 @@
     return projPath;
 }
 
-
+- (NSString *)buildPath
+{
+    NSMutableString *buildPath = [self.filePath deletePathComponentBeforeMeet:@"src"];
+    [buildPath appendString:@"/output/bin"];
+    return buildPath;
+}
 
 - (void)updateInfoFrom:(NSData *)data andSqilitePath:(NSString *)path
 {
@@ -103,9 +114,9 @@
     [controller creatFileTable];
     [controller updateFileTable:arrForFiles and:arrForGroups];
     [controller findGroupPathFromMainPath:[self projPath] andMainGroupId:mainGroupId];
-    arr = [controller findFilePathFromMainPath:[self projPath]];
-    
+    arr = [controller findFilePathFromMainPath:[self projPath] andBuildPath:[self buildPath]];
     [controller dropFileTable];
+    
     for (NSString *path in arr)
     {
         BOOL isPathPlist = [path containsString:@".plist"];

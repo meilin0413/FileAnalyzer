@@ -7,7 +7,7 @@
 //
 
 #import "TableController.h"
-
+#import "NSString+pathAnlyze.h"
 
 @implementation TableController
 
@@ -27,6 +27,7 @@
     return dateNow;
     
 }
+
 - (id)initTableWith:(NSString *)path
 {
     self = [super init];
@@ -578,7 +579,7 @@
     [self.db close];
 }
 
-- (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath
+- (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath andBuildPath:(NSString *)buildPath
 {
     NSMutableArray *arr = [NSMutableArray array];
     if ([self.db open])
@@ -592,10 +593,14 @@
                 path = [ mainPath stringByAppendingFormat:@"/%@",[fileset stringForColumn:@"path"]];
             }
             
-            else if ([[fileset stringForColumn:@"fileName"] containsString:@".a"] || [[fileset stringForColumn:@"fileName"] containsString:@".framework"])
+            else if ([[fileset stringForColumn:@"sourceTree"]isEqualToString:@"BUILT_PRODUCTS_DIR"])
             {
-                path = [fileset stringForColumn:@"fileName"];
+                path = [buildPath stringByAppendingFormat:@"/%@",[fileset stringForColumn:@"path"]];
             }
+//            else if ([[fileset stringForColumn:@"fileName"] containsString:@".a"] || [[fileset stringForColumn:@"fileName"] containsString:@".framework"])
+//            {
+//                path = [fileset stringForColumn:@"fileName"];
+//            }
             
             else
             {
