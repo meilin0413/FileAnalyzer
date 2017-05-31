@@ -21,13 +21,13 @@
 - (void)open;
 - (void)creatFileTable;
 - (void)dropFileTable;
+- (void)creatLibAndProjsTable;
+- (void)dropLibAndProjsTable;
 - (void)updateFileTable:(NSMutableArray *)arrForFiles and:(NSMutableArray *)arrForGroups;
 
 - (void)findGroupPathFromMainPath:(NSString *)mainPath andMainGroupId:(NSString *)mainGroupId;
 
 - (NSMutableArray *)findFilePathFromMainPath:(NSString *)mainPath andBuildPath:(NSString *)buildPath;
-
-
 - (void)creatAllTable;
 - (void)updateAllTable:(SampleAnalyzer *)sample;
 - (void)dropAllTable;

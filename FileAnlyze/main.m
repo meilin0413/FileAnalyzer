@@ -16,9 +16,29 @@
 #import "TableController.h"
 #import "CommitFile.h"
 #import "NSString+pathAnlyze.h"
-
+#import "ProjectsAndLibs.h"
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        ProjectsAndLibs *a = [[ProjectsAndLibs alloc] initWithDependenciesPath:@"/Volumes/Data/webex-mac-client/dependencies"];
+        [a updateTableLibsAndProjsWithSqlitePath:@"/Volumes/Data/webex-mac-client/output/objs/analyze/analyzer.sqlite"];
+        
+//        NSString *str = @"1234.56";
+//        NSString *str1 = @"2344.780";
+//        NSString *str2 = @"123.56";
+//        //double a = [str doubleValue];
+//        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+//        formatter.usesSignificantDigits = YES;
+//        NSNumber *re1 = [formatter numberFromString:str];
+//        NSNumber *re2 = [formatter numberFromString:str1];
+//        NSNumber *re3 = [formatter numberFromString:str2];
+//        NSNumber *re4 = [formatter numberFromString:str];
+//        NSComparisonResult result = [re1 compare:re2];
+//        if (result == NSOrderedAscending)
+//        {
+//            NSLog(@"nnnnnn");
+//        }
+//        NSLog(@"%@",re1);
         
         //TableController *controller = [[TableController alloc] initTableWith:]
         //        SampleAnalyzer* analyzer = [[SampleAnalyzer alloc] initWithFile:@"/Volumes/Data/webex-mac-client/src/classic_client/commonservice/commonservice.xcodeproj/project.pbxproj"];
@@ -33,75 +53,75 @@ int main(int argc, const char * argv[]) {
         //
         
 //////////////////////////////////////////////////////////////////////////////////////////////
-        NSDate *date = [NSDate date];
-        NSFileManager *filemgr = [[NSFileManager alloc] init];
-        NSString *currentPath = [filemgr currentDirectoryPath];
-        NSLog(@"curretPath is %@",currentPath);
-         
-        NSArray *arguments = [[NSProcessInfo processInfo] arguments];
-        NSString *commitFilePath = arguments.lastObject;
-        NSLog(@"input is :%@",commitFilePath);
-        NSFileManager *fm = [NSFileManager defaultManager];
-        if (![fm fileExistsAtPath:commitFilePath] || ![[commitFilePath lastPathComponent] containsString:@"."])
-        {
-            NSLog(@"error : input is wrong");
-        }
-        
-        else
-        {
-            NSMutableString *sqlitePath = [currentPath deletePathComponentBeforeMeet:@"build"];
-            [sqlitePath appendString:@"/output/objs/analyze"];
-            [fm createDirectoryAtPath:sqlitePath withIntermediateDirectories:YES attributes:nil error:nil];
-            [sqlitePath appendString:@"/analyzer.sqlite"];
-            
-            //NSLog(@"sqlitePath %@",sqlitePath);
-            if ([fm fileExistsAtPath:sqlitePath])
-            {
-                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
-                [control dropAllTable];
-                [control creatAllTable];
-            }
-            else
-            {
-                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
-                [control creatAllTable];
-            }
-            
-            TableController *control = [[TableController alloc] initTableWith:sqlitePath];
-            
-            CommitFile *commitFile = [[CommitFile alloc] initWithPath:commitFilePath andSqlitePath:sqlitePath];
-            [commitFile addCommitInfoIntoCommitTable];
-            
-            if ([control isCommitTableEmpty])
-            {
-                NSLog(@"the commit file is empty!");
-            }
-            else
-            {
-                NSMutableString *repoPath = [currentPath deletePathComponentBeforeMeet:@"build"];
-                [repoPath appendString:@"/src"];
-                NSLog(@"repo path %@",repoPath);
-                
-                FileList *file = [[FileList alloc] initWithPath:repoPath andsqlitePath:sqlitePath];
-                [file addFileToFileTable];
-            
-                NSLog(@"Begin analyze ...");
-                ReportProjChange *change = [[ReportProjChange alloc] initWithSqlitePath:sqlitePath];
-                
-                [change AuthorChangeForProjs];
-                
-                NSLog(@"End analyze.");
-                
-                NSMutableString *resultSavedPath = [currentPath deletePathComponentBeforeMeet:@"build"];
-                [resultSavedPath appendString:@"/output/analyze"];
-                
-                [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
-                [resultSavedPath appendString:@"/analyze_package_version.json"];
-                [control outputResultTableIntoText:resultSavedPath];
-            }
-        }
-        double time = [[NSDate date] timeIntervalSinceDate:date];
-        NSLog(@"run time is：%f",time);
+//        NSDate *date = [NSDate date];
+//        NSFileManager *filemgr = [[NSFileManager alloc] init];
+//        NSString *currentPath = [filemgr currentDirectoryPath];
+//        NSLog(@"curretPath is %@",currentPath);
+//         
+//        NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+//        NSString *commitFilePath = arguments.lastObject;
+//        NSLog(@"input is :%@",commitFilePath);
+//        NSFileManager *fm = [NSFileManager defaultManager];
+//        if (![fm fileExistsAtPath:commitFilePath] || ![[commitFilePath lastPathComponent] containsString:@"."])
+//        {
+//            NSLog(@"error : input is wrong");
+//        }
+//        
+//        else
+//        {
+//            NSMutableString *sqlitePath = [currentPath deletePathComponentBeforeMeet:@"build"];
+//            [sqlitePath appendString:@"/output/objs/analyze"];
+//            [fm createDirectoryAtPath:sqlitePath withIntermediateDirectories:YES attributes:nil error:nil];
+//            [sqlitePath appendString:@"/analyzer.sqlite"];
+//            
+//            //NSLog(@"sqlitePath %@",sqlitePath);
+//            if ([fm fileExistsAtPath:sqlitePath])
+//            {
+//                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
+//                [control dropAllTable];
+//                [control creatAllTable];
+//            }
+//            else
+//            {
+//                TableController *control = [[TableController alloc] initTableWith:sqlitePath];
+//                [control creatAllTable];
+//            }
+//            
+//            TableController *control = [[TableController alloc] initTableWith:sqlitePath];
+//            
+//            CommitFile *commitFile = [[CommitFile alloc] initWithPath:commitFilePath andSqlitePath:sqlitePath];
+//            [commitFile addCommitInfoIntoCommitTable];
+//            
+//            if ([control isCommitTableEmpty])
+//            {
+//                NSLog(@"the commit file is empty!");
+//            }
+//            else
+//            {
+//                NSMutableString *repoPath = [currentPath deletePathComponentBeforeMeet:@"build"];
+//                [repoPath appendString:@"/src"];
+//                NSLog(@"repo path %@",repoPath);
+//                
+//                FileList *file = [[FileList alloc] initWithPath:repoPath andsqlitePath:sqlitePath];
+//                [file addFileToFileTable];
+//            
+//                NSLog(@"Begin analyze ...");
+//                ReportProjChange *change = [[ReportProjChange alloc] initWithSqlitePath:sqlitePath];
+//                
+//                [change AuthorChangeForProjs];
+//                
+//                NSLog(@"End analyze.");
+//                
+//                NSMutableString *resultSavedPath = [currentPath deletePathComponentBeforeMeet:@"build"];
+//                [resultSavedPath appendString:@"/output/analyze"];
+//                
+//                [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
+//                [resultSavedPath appendString:@"/analyze_package_version.json"];
+//                [control outputResultTableIntoText:resultSavedPath];
+//            }
+//        }
+//        double time = [[NSDate date] timeIntervalSinceDate:date];
+//        NSLog(@"run time is：%f",time);
         
         
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,7 +393,20 @@ int main(int argc, const char * argv[]) {
 //        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 //        NSDate *date = [formatter dateFromString:strDate];
 //        NSLog(@"date %@",date);
-        
+//        NSTimeZone *zone = [[NSTimeZone alloc]initWithName:@"Asia/Shanghai"];
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"yyMM.dd";
+//        formatter.timeZone = zone;
+//        
+//        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:@"/Volumes/Data/webex-mac-client/dependencies/libs/lib7zip_64.a"];
+//        NSLog(@"dic %@",dic);
+//        NSDate *date = [dic objectForKey:@"NSFileModificationDate"];
+//        NSLog(@"date %@",date);
+//        NSString *dateString = [NSString string];
+//        dateString = [formatter stringFromDate:date];
+//        NSLog(@"string %@",dateString);
+////        self.libModificationDate = [dateString floatValue];
+//       NSLog(@"%f",[dateString floatValue]);
     }
     return 0;
 }

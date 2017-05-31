@@ -1,0 +1,392 @@
+[
+  {
+    "proj version" : "1705.16",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatnewjpeg.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libtshare.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "as.xcodeproj"
+  },
+  {
+    "proj version" : "1705.15",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libconfmgr.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libnewutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "wbxmgrec.xcodeproj"
+  },
+  {
+    "proj version" : "1606.28",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "hol.xcodeproj"
+  },
+  {
+    "proj version" : "1704.21",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "pdstream.xcodeproj"
+  },
+  {
+    "proj version" : "1603.16",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "syncvd.xcodeproj"
+  },
+  {
+    "proj version" : "1610.24",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libconfmgr.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "tcholmgr.xcodeproj"
+  },
+  {
+    "proj version" : "1705.11",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libatutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libconfmgr.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libnewutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libwbxsubconf.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "wbxmgrtc.xcodeproj"
+  },
+  {
+    "proj version" : "1702.10",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libjson.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "inviteremind.xcodeproj"
+  },
+  {
+    "proj version" : "1702.24",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/liblibjpegmobiles.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libzlibs.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "PsImgStrm.xcodeproj"
+  },
+  {
+    "proj version" : "1705.08",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libnewutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libtelephony.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "hybrid_art_i386.xcodeproj"
+  },
+  {
+    "proj version" : "1705.14",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libnewutil.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libtelephony.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "telephony.xcodeproj"
+  },
+  {
+    "proj version" : "1602.25",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "atmsupload_i386.xcodeproj"
+  },
+  {
+    "proj version" : "1612.21",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "asannotation2.xcodeproj"
+  },
+  {
+    "proj version" : "1605.12",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "avcapture.xcodeproj"
+  },
+  {
+    "proj version" : "1611.24",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "commonui.xcodeproj"
+  },
+  {
+    "proj version" : "1611.24",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "commonuiart.xcodeproj"
+  },
+  {
+    "proj version" : "1504.29",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "convertpdf_i386.xcodeproj"
+  },
+  {
+    "proj version" : "1612.23",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "nbr2.xcodeproj"
+  },
+  {
+    "proj version" : "1704.13",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "deloreannbr2.xcodeproj"
+  },
+  {
+    "proj version" : "1602.26",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "Hands-On-Lab.xcodeproj"
+  },
+  {
+    "proj version" : "1704.27",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "TrainingCenter.xcodeproj"
+  },
+  {
+    "proj version" : "1610.14",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libtelephony.a",
+        "lib modification date" : "1705.18"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "telephonyart.xcodeproj"
+  },
+  {
+    "proj version" : "1606.02",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      }
+    ],
+    "proj name" : "tspsdk.xcodeproj"
+  },
+  {
+    "proj version" : "1602.25",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libsafec.a",
+        "lib modification date" : "1705.09"
+      },
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "wbxdocumentshare.xcodeproj"
+  },
+  {
+    "proj version" : "1705.17",
+    "libAndVersion" : [
+      {
+        "lib path" : "/Volumes/Data/webex-mac-client/dependencies/libs/libunifiedtrace.a",
+        "lib modification date" : "1705.18"
+      }
+    ],
+    "proj name" : "syncstream.xcodeproj"
+  }
+]

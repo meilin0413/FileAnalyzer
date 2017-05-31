@@ -663,11 +663,14 @@
                     // }
                 }
             }
+            [self.db beginTransaction];
             if ([changedProjs count] != 0)
             {
                 for (NSString *proj in changedProjs)
                 {
                     FMResultSet *plistsOfProj = [self.db executeQuery:@"select * from plistTable where projName=?",proj];
+                    float max = 0;
+                    max = [self findMaxModificationDateOfLibs:[self findLibs:proj]];
                     
                     while ([plistsOfProj next])
                     {
@@ -676,23 +679,59 @@
                        
                         FMResultSet *isPlistInCommit = [self.db executeQuery:@"select id from commitTable where authorName=? and commitFileName=?",author,plistPath];
                         
-                        if (![isPlistInCommit next])
+                        if (![isPlistInCommit next] && ![plistVersion isEqualToString:[TableController dateForNow]])
                         {
-                            if (![plistVersion isEqualToString:[TableController dateForNow]])
-                            {
-                                [self.db executeUpdate:@"insert into resultTable(authorName,fileChanged,projChanged,plistNotChanged) values(?,?,?,?)",author,commitFileName,proj,plistPath];
-
-                            }
+                            
+                            [self.db executeUpdate:@"insert into resultTable(authorName,fileChanged,projChanged,plistNotChanged) values(?,?,?,?)",author,commitFileName,proj,plistPath];
                         }
-                        
                     }
                 }
             }
- 
+            [self.db commit];
         }
     }
+    [self.db close];
 }
 
+- (NSMutableArray *)findLibs:(NSString *)proj
+{
+    NSMutableArray *libsInProjs = [NSMutableArray array];
+    if ([self.db open])
+    {
+        FMResultSet *result = [self.db executeQuery:@"select * from relationshipTable where projName=?",proj];
+        while ([result next])
+        {
+            NSString *file = [result stringForColumn:@"fileName"];
+            if ([file containsString:@"dependencies"] && [file hasSuffix:@".a"])
+            {
+                [libsInProjs addObject:file];
+            }
+        }
+    }
+    return libsInProjs;
+}
+
+- (float)findMaxModificationDateOfLibs:(NSMutableArray *)libs
+{
+    float maxModificationDate = 0;
+    NSTimeZone *zone = [[NSTimeZone alloc]initWithName:@"Asia/Shanghai"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyMM.dd";
+    formatter.timeZone = zone;
+    for (NSString *libPath in libs)
+    {
+        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:libPath];
+        NSDate *date = [dic objectForKey:@"NSFileModificationDate"];
+        NSString *dateString = [formatter stringFromDate:date];
+        float tmp = [dateString floatValue];
+        if (tmp > maxModificationDate)
+        {
+            maxModificationDate = tmp;
+        }
+        
+    }
+    return maxModificationDate;
+}
 
 @end
 

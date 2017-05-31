@@ -12,6 +12,8 @@
 		2A3E9BAD1ED9055E006F21A2 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C121D1ED43D5000FC5AFE /* TableController.m */; };
 		2A3E9BAE1ED9058D006F21A2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C12011ED43BEB00FC5AFE /* FMDatabase.m */; };
 		2A3E9BAF1ED905A2006F21A2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C120A1ED43BEB00FC5AFE /* FMResultSet.m */; };
+		2A3E9BB21ED962A2006F21A2 /* LibsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E9BB11ED962A2006F21A2 /* LibsInfo.m */; };
+		2A3E9BB51ED96647006F21A2 /* ProjectsAndLibs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E9BB41ED96647006F21A2 /* ProjectsAndLibs.m */; };
 		2A9C11F51ED43B8200FC5AFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C11F41ED43B8200FC5AFE /* main.m */; };
 		2A9C11FD1ED43BAD00FC5AFE /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */; };
 		2A9C11FF1ED43BBA00FC5AFE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9C11FE1ED43BBA00FC5AFE /* libsqlite3.0.tbd */; };
@@ -46,6 +48,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A3E9BB01ED962A2006F21A2 /* LibsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibsInfo.h; sourceTree = "<group>"; };
+		2A3E9BB11ED962A2006F21A2 /* LibsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibsInfo.m; sourceTree = "<group>"; };
+		2A3E9BB31ED96647006F21A2 /* ProjectsAndLibs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsAndLibs.h; sourceTree = "<group>"; };
+		2A3E9BB41ED96647006F21A2 /* ProjectsAndLibs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsAndLibs.m; sourceTree = "<group>"; };
 		2A9C11F11ED43B8200FC5AFE /* FileAnlyze */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FileAnlyze; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9C11F41ED43B8200FC5AFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A9C11FC1ED43BAD00FC5AFE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -142,6 +148,10 @@
 				2A9C121A1ED43D0400FC5AFE /* NSString+pathAnlyze.m */,
 				2A9C121C1ED43D5000FC5AFE /* TableController.h */,
 				2A9C121D1ED43D5000FC5AFE /* TableController.m */,
+				2A3E9BB01ED962A2006F21A2 /* LibsInfo.h */,
+				2A3E9BB11ED962A2006F21A2 /* LibsInfo.m */,
+				2A3E9BB31ED96647006F21A2 /* ProjectsAndLibs.h */,
+				2A3E9BB41ED96647006F21A2 /* ProjectsAndLibs.m */,
 				2A9C121F1ED43DA800FC5AFE /* ReportProjChange.h */,
 				2A9C12201ED43DA800FC5AFE /* ReportProjChange.m */,
 				2A9C12251ED43E0600FC5AFE /* FileList.h */,
@@ -267,7 +277,9 @@
 			files = (
 				2A9C121E1ED43D5000FC5AFE /* TableController.m in Sources */,
 				2A9C120C1ED43BEB00FC5AFE /* FMDatabase.m in Sources */,
+				2A3E9BB51ED96647006F21A2 /* ProjectsAndLibs.m in Sources */,
 				2A9C12211ED43DA800FC5AFE /* ReportProjChange.m in Sources */,
+				2A3E9BB21ED962A2006F21A2 /* LibsInfo.m in Sources */,
 				2A9C120E1ED43BEB00FC5AFE /* FMDatabaseAdditions.m in Sources */,
 				2A9C12101ED43BEB00FC5AFE /* FMDatabasePool.m in Sources */,
 				2A9C12271ED43E0600FC5AFE /* FileList.m in Sources */,
