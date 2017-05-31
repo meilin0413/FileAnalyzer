@@ -56,90 +56,96 @@
 
 - (void)updateTableLibsAndProjsWithSqlitePath:(NSString *)sqlitePath
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:sqlitePath];
-    if ([db open])
-    {
-        NSMutableDictionary *dicForProjsWithPlist = [NSMutableDictionary dictionary];
-        [db executeStatements:@"create table libAndProjsTable(id integer primary key autoincrement,projName text,libPath text,projDate text,libDate text)"];
-        
-        FMResultSet *hasPlistProjs = [db executeQuery:@"select * from plistTable"];
-        while ([hasPlistProjs next])
-        {
-            [dicForProjsWithPlist setObject:[hasPlistProjs stringForColumn:@"plistDate"] forKey:[hasPlistProjs stringForColumn:@"projName"]];
-        }
-        NSArray *arr = [dicForProjsWithPlist allKeys];
-        
-        //[db beginTransaction];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        formatter.usesSignificantDigits = YES;
-        
-        for (LibsInfo *lib in libs)
-        {
-            //NSMutableArray *projsForLib = [NSMutableArray array];
-            FMResultSet *result = [db executeQuery:@"select * from relationshipTable where filePath=?",lib.libPath];
-            while ([result next])
-            {
-                NSString *proj = [result stringForColumn:@"projName"];
-                if ([dicForProjsWithPlist objectForKey:proj])
-                {
-                    NSNumber *plistVersion = [formatter numberFromString:[dicForProjsWithPlist objectForKey:proj]];
-                    NSComparisonResult result = [lib.libModificationDate compare:plistVersion];
-                    
-                    if ([arr containsObject:proj] && (result == NSOrderedDescending))
-                    {
-                        [db executeUpdate:@"insert into libAndProjsTable(projName,libPath,projDate,libDate) values(?,?,?,?)",proj,lib.libPath,[dicForProjsWithPlist objectForKey:proj],[NSString stringWithFormat:@"%@",lib.libModificationDate]];
-                    }
- 
-                }
-            }
-            
-        }
-        FMResultSet *result = [db executeQuery:@"select projName from libAndProjsTable"];
-        NSMutableArray *projs = [NSMutableArray array];
-        while ([result next])
-        {
-            NSString *proj = [result stringForColumn:@"projName"];
-            if (![projs containsObject:proj])
-            {
-                [projs addObject:proj];
-            }
-        }
-        NSMutableArray *arrForProjs = [NSMutableArray array];
-        for (NSString *proj in projs)
-        {
-            NSMutableDictionary *dicForProj = [NSMutableDictionary dictionary];
-            NSMutableArray *LibAndVersion = [NSMutableArray array];
-            FMResultSet *re = [db executeQuery:@"select * from libAndProjsTable where projName=?",proj];
-            while ([re next])
-            {
-                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[re stringForColumn:@"libPath"],@"lib path",[re stringForColumn:@"libDate"],@"lib modification date", nil];
-                [LibAndVersion addObject:dic];
-                [dicForProj setObject:[re stringForColumn:@"projDate"] forKey:@"proj version"];
-            }
-            [dicForProj setObject:proj forKey:@"proj name"];
-            [dicForProj setObject:LibAndVersion forKey:@"libAndVersion"];
-            [arrForProjs addObject:dicForProj];
-        }
-        NSError *err = nil;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:arrForProjs options:NSJSONWritingPrettyPrinted error:&err];
-       // [jsonData writeToFile:@"hhhhh.json" atomically:YES];
-        NSMutableString *jsonString = [[NSMutableString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSString *ch = nil;
-        for (NSInteger index = 0;index < jsonString.length;index++)
-        {
-            ch = [jsonString substringWithRange:NSMakeRange(index, 1)];
-            if ([ch isEqualToString:@"\\"])
-                [jsonString deleteCharactersInRange:NSMakeRange(index, 1)];
-        }
-        [jsonString writeToFile:@"hhhhh.json" atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        //[arrForProjs writeToFile:@"hhhhh.json" atomically:YES];
-        
-        //[db commit];
-    }
-    [db close];
-}
-- (void)outputLibAndProjsTable
-{
+    TableController *controller = [[TableController alloc] initTableWith:sqlitePath];
+    [controller dropLibAndProjsTable];
+    [controller creatLibAndProjsTable];
+    [controller updateLibAndProjsTable:self.libs];
+    [controller outputLibAndProjsTableInto:@"hhhhh.json"];
     
+//    FMDatabase *db = [FMDatabase databaseWithPath:sqlitePath];
+//    if ([db open])
+//    {
+//        NSMutableDictionary *dicForProjsWithPlist = [NSMutableDictionary dictionary];
+//        [db executeStatements:@"create table libAndProjsTable(id integer primary key autoincrement,projName text,libPath text,projDate text,libDate text)"];
+//        
+//        FMResultSet *hasPlistProjs = [db executeQuery:@"select * from plistTable"];
+//        while ([hasPlistProjs next])
+//        {
+//            [dicForProjsWithPlist setObject:[hasPlistProjs stringForColumn:@"plistDate"] forKey:[hasPlistProjs stringForColumn:@"projName"]];
+//        }
+//        NSArray *arr = [dicForProjsWithPlist allKeys];
+//        
+//        //[db beginTransaction];
+//        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+//        formatter.usesSignificantDigits = YES;
+//        
+//        for (LibsInfo *lib in libs)
+//        {
+//            //NSMutableArray *projsForLib = [NSMutableArray array];
+//            FMResultSet *result = [db executeQuery:@"select * from relationshipTable where filePath=?",lib.libPath];
+//            while ([result next])
+//            {
+//                NSString *proj = [result stringForColumn:@"projName"];
+//                if ([dicForProjsWithPlist objectForKey:proj])
+//                {
+//                    NSNumber *plistVersion = [formatter numberFromString:[dicForProjsWithPlist objectForKey:proj]];
+//                    NSComparisonResult result = [lib.libModificationDate compare:plistVersion];
+//                    
+//                    if ([arr containsObject:proj] && (result == NSOrderedDescending))
+//                    {
+//                        [db executeUpdate:@"insert into libAndProjsTable(projName,libPath,projDate,libDate) values(?,?,?,?)",proj,lib.libPath,[dicForProjsWithPlist objectForKey:proj],[NSString stringWithFormat:@"%@",lib.libModificationDate]];
+//                    }
+// 
+//                }
+//            }
+//            
+//        }
+//        FMResultSet *result = [db executeQuery:@"select projName from libAndProjsTable"];
+//        NSMutableArray *projs = [NSMutableArray array];
+//        while ([result next])
+//        {
+//            NSString *proj = [result stringForColumn:@"projName"];
+//            if (![projs containsObject:proj])
+//            {
+//                [projs addObject:proj];
+//            }
+//        }
+//        NSMutableArray *arrForProjs = [NSMutableArray array];
+//        for (NSString *proj in projs)
+//        {
+//            NSMutableDictionary *dicForProj = [NSMutableDictionary dictionary];
+//            NSMutableArray *LibAndVersion = [NSMutableArray array];
+//            FMResultSet *re = [db executeQuery:@"select * from libAndProjsTable where projName=?",proj];
+//            while ([re next])
+//            {
+//                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[re stringForColumn:@"libPath"],@"lib path",[re stringForColumn:@"libDate"],@"lib modification date", nil];
+//                [LibAndVersion addObject:dic];
+//                [dicForProj setObject:[re stringForColumn:@"projDate"] forKey:@"proj version"];
+//            }
+//            [dicForProj setObject:proj forKey:@"proj name"];
+//            [dicForProj setObject:LibAndVersion forKey:@"libAndVersion"];
+//            [arrForProjs addObject:dicForProj];
+//        }
+//        NSError *err = nil;
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:arrForProjs options:NSJSONWritingPrettyPrinted error:&err];
+//       // [jsonData writeToFile:@"hhhhh.json" atomically:YES];
+//        NSMutableString *jsonString = [[NSMutableString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSString *ch = nil;
+//        for (NSInteger index = 0;index < jsonString.length;index++)
+//        {
+//            ch = [jsonString substringWithRange:NSMakeRange(index, 1)];
+//            if ([ch isEqualToString:@"\\"])
+//                [jsonString deleteCharactersInRange:NSMakeRange(index, 1)];
+//        }
+//        [jsonString writeToFile:@"hhhhh.json" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//        //[arrForProjs writeToFile:@"hhhhh.json" atomically:YES];
+//        
+//        //[db commit];
+//    }
+//    [db close];
 }
+//- (void)outputLibAndProjsTable
+//{
+//    
+//}
 @end

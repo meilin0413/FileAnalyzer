@@ -23,6 +23,11 @@
 - (void)dropFileTable;
 - (void)creatLibAndProjsTable;
 - (void)dropLibAndProjsTable;
+- (void)updateLibAndProjsTable:(NSMutableArray *)libs;
+- (void)outputLibAndProjsTableInto:(NSString *)path;
+- (NSArray *)libAndProjsTable;
+- (NSString *)changeDataToJsonData:(id)obj;
+
 - (void)updateFileTable:(NSMutableArray *)arrForFiles and:(NSMutableArray *)arrForGroups;
 
 - (void)findGroupPathFromMainPath:(NSString *)mainPath andMainGroupId:(NSString *)mainGroupId;

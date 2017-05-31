@@ -8,7 +8,7 @@
 
 #import "TableController.h"
 #import "NSString+pathAnlyze.h"
-
+#import "LibsInfo.h"
 @implementation TableController
 
 @synthesize sqlitePath;
@@ -40,16 +40,19 @@
     }
     return self;
 }
+
 - (void)open {
     [self.db open];
     [self.db beginTransaction];
     
 }
+
 - (void)close
 {
     [self.db commit];
     [self.db close];
 }
+
 - (void)creatAllTable
 {
     if ([self.db open])
@@ -66,6 +69,7 @@
     
     
 }
+
 //update all table, the .a table hasn't update
 - (void)updateAllTable:(SampleAnalyzer *)sample
 {
@@ -97,6 +101,7 @@
 //    [self.db close];
 
 }
+
 //drop all table
 - (void)dropAllTable
 {
@@ -119,18 +124,21 @@
     if (success)
         NSLog(@"creat filePathTable is succesed");
 }
+
 - (void)creatProjTable
 {
     BOOL success = [self.db executeStatements:@"create table projTable(id integer primary key autoincrement,projName text)"];
     if (success)
         NSLog(@"creat projTable is succesed");
 }
+
 - (void)creatRelationshipTable{
     
     BOOL success = [self.db executeStatements:@"create table relationshipTable(id integer primary key autoincrement,projName text,filePath text)"];
     if (success)
         NSLog(@"creat relationship table is succesed");
 }
+
 - (void)creatPlistTable{
     
     BOOL success = [self.db executeStatements:@"create table plistTable(id integer primary key autoincrement,plistPath text,projName text,plistDate text)"];
@@ -141,12 +149,14 @@
     
     
 }
+
 - (void)creatLibraryTable{
     
     BOOL success = [self.db executeStatements:@"create table libraryTable(id integer primary key autoincrement,libraryName text,belongToProj text)"];
     if (success)
         NSLog(@"creat library table is succesed");
 }
+
 - (void)creatCommitTable{
     
     BOOL success = [self.db executeStatements:@"create table commitTable(id integer primary key autoincrement,authorName text,commitFileName text)"];
@@ -154,6 +164,7 @@
         NSLog(@"creat commitTable table is succesed");
     
 }
+
 - (void)updateCommitTable:(NSString *)author andCommitFiles:(NSMutableArray *)commitFiles
 {
     if ([self.db open])
@@ -186,6 +197,30 @@
     [self.db close];
     
 }
+
+- (void)creatLibAndProjsTable
+{
+    if ([self.db open])
+    {
+        [db executeStatements:@"create table libAndProjsTable(id integer primary key autoincrement,projName text,libPath text,projDate text,libDate text)"];
+    }
+    [self.db close];
+}
+
+- (void)dropLibAndProjsTable
+{
+    if ([self.db open])
+    {
+        BOOL succese = [self.db executeStatements:@"drop table libAndProjsTable;"];
+        if (succese)
+        {
+            NSLog(@"drop table is succesed");
+        }
+    }
+    [self.db close];
+    
+}
+
 - (BOOL)isCommitTableEmpty
 {
     if ([self.db open])
@@ -215,6 +250,7 @@
         NSLog(@"drop table is succesed");
     }
 }
+
 - (void)dropProjTable{
     
     BOOL succese = [self.db executeStatements:@"drop table projTable;"];
@@ -224,6 +260,7 @@
     }
     
 }
+
 - (void)dropRelationshipTable{
     
     BOOL succese = [self.db executeStatements:@"drop table relationshipTable;"];
@@ -232,6 +269,7 @@
         NSLog(@"drop table is succesed");
     }
 }
+
 - (void)dropPlistTable{
     
     BOOL succese = [self.db executeStatements:@"drop table plistTable;"];
@@ -240,6 +278,7 @@
         NSLog(@"drop table is succesed");
     }
 }
+
 - (void)dropLibraryTable{
     
     BOOL succese = [self.db executeStatements:@"drop table libraryTable"];
@@ -249,6 +288,7 @@
     }
     
 }
+
 - (void)dropCommitTable{
     
     BOOL succese = [self.db executeStatements:@"drop table commitTable"];
@@ -266,6 +306,7 @@
         NSLog(@"creat commitTable table is succesed");
     
 }
+
 - (void)dropResultTable
 {
     BOOL succese = [self.db executeStatements:@"drop table resultTable"];
@@ -275,6 +316,115 @@
     }
     
 }
+
+- (void)updateLibAndProjsTable:(NSMutableArray *)libs
+{
+    if ([self.db open])
+    {
+        NSMutableDictionary *dicForProjsWithPlist = [NSMutableDictionary dictionary];
+        FMResultSet *hasPlistProjs = [db executeQuery:@"select * from plistTable"];
+        while ([hasPlistProjs next])
+        {
+            [dicForProjsWithPlist setObject:[hasPlistProjs stringForColumn:@"plistDate"] forKey:[hasPlistProjs stringForColumn:@"projName"]];
+        }
+        NSArray *arr = [dicForProjsWithPlist allKeys];
+        
+        //[db beginTransaction];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.usesSignificantDigits = YES;
+        
+        for (LibsInfo *lib in libs)
+        {
+            //NSMutableArray *projsForLib = [NSMutableArray array];
+            FMResultSet *result = [db executeQuery:@"select * from relationshipTable where filePath=?",lib.libPath];
+            while ([result next])
+            {
+                NSString *proj = [result stringForColumn:@"projName"];
+                if ([dicForProjsWithPlist objectForKey:proj])
+                {
+                    NSNumber *plistVersion = [formatter numberFromString:[dicForProjsWithPlist objectForKey:proj]];
+                    NSComparisonResult result = [lib.libModificationDate compare:plistVersion];
+                    
+                    if ([arr containsObject:proj] && (result == NSOrderedDescending))
+                    {
+                        [db executeUpdate:@"insert into libAndProjsTable(projName,libPath,projDate,libDate) values(?,?,?,?)",proj,lib.libPath,[dicForProjsWithPlist objectForKey:proj],[NSString stringWithFormat:@"%@",lib.libModificationDate]];
+                    }
+                    
+                }
+            }
+            
+        }
+
+    }
+    [self.db close];
+}
+
+
+- (void)outputLibAndProjsTableInto:(NSString *)path
+{
+    NSString *jsonString = [self changeDataToJsonData:[self libAndProjsTable]];
+    
+    [jsonString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+   
+}
+
+- (NSArray *)libAndProjsTable
+{
+    if ([self.db open])
+    {
+        FMResultSet *result = [db executeQuery:@"select projName from libAndProjsTable"];
+        NSMutableArray *projs = [NSMutableArray array];
+        while ([result next])
+        {
+            NSString *proj = [result stringForColumn:@"projName"];
+            if (![projs containsObject:proj])
+            {
+                [projs addObject:proj];
+            }
+        }
+        NSMutableArray *arrForProjs = [NSMutableArray array];
+        for (NSString *proj in projs)
+        {
+            NSMutableDictionary *dicForProj = [NSMutableDictionary dictionary];
+            NSMutableArray *LibAndVersion = [NSMutableArray array];
+            FMResultSet *re = [db executeQuery:@"select * from libAndProjsTable where projName=?",proj];
+            while ([re next])
+            {
+                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[re stringForColumn:@"libPath"],@"lib path",[re stringForColumn:@"libDate"],@"lib modification date", nil];
+                [LibAndVersion addObject:dic];
+                [dicForProj setObject:[re stringForColumn:@"projDate"] forKey:@"proj version"];
+            }
+            [dicForProj setObject:proj forKey:@"proj name"];
+            [dicForProj setObject:LibAndVersion forKey:@"libAndVersion"];
+            [arrForProjs addObject:dicForProj];
+        }
+        [self.db close];
+        return arrForProjs;
+        
+    }
+    [self.db close];
+    return nil;
+}
+
+- (NSString *)changeDataToJsonData:(id)obj
+{
+    if ([NSJSONSerialization isValidJSONObject:obj])
+    {
+        NSError *err = nil;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:&err];
+        NSMutableString *jsonString = [[NSMutableString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString *ch = nil;
+        for (NSInteger index = 0;index < jsonString.length;index++)
+        {
+            ch = [jsonString substringWithRange:NSMakeRange(index, 1)];
+            if ([ch isEqualToString:@"\\"])
+                [jsonString deleteCharactersInRange:NSMakeRange(index, 1)];
+        }
+        return jsonString;
+    }
+    return nil;
+}
+
 //obtain /Volumes/Data/webex-mac-client/ from sqlitePath
 - (NSString *)rootPath
 {
@@ -311,6 +461,7 @@
     }
     return rootpath;
 }
+
 //return repo name
 - (NSString *)repoName
 {
@@ -395,6 +546,7 @@
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&err];
         [jsonData writeToFile:textPath atomically:YES];
         NSMutableString *jsonString = [[NSMutableString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
         //replace "\/" into "/"
         NSString *ch = nil;
         for (NSInteger index = 0;index < jsonString.length;index++)
@@ -405,9 +557,6 @@
         }
         //delete root path, keep relative path
         
-        
-        //NSString *string = [jsonString stringByReplacingOccurrencesOfString:[self rootPath] withString:@""];
-        //[string writeToFile:textPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
         [jsonString writeToFile:textPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"%@",jsonString);
@@ -433,6 +582,7 @@
     }
     [self.db close];
 }
+
 - (void)dropFileTable
 {
     if ([self.db open])
@@ -446,6 +596,7 @@
     }
     [self.db close];
 }
+
 - (void)updateFileTable:(NSMutableArray *)arrForFiles and:(NSMutableArray *)arrForGroups
 {
     if ([self.db open])
@@ -467,6 +618,7 @@
     [self.db close];
     
 }
+
 - (void)findGroupPathFromMainPath:(NSString *)mainPath andMainGroupId:(NSString *)mainGroupId
 {
     if ([self.db open])
