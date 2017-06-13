@@ -55,5 +55,7 @@
 - (BOOL)isCommitTableEmpty;
 - (void)updateCommitTable:(NSString *)author andCommitFiles:(NSMutableArray *) commitFiles;
 - (NSString *)rootPath;
-- (void)outputResultTableIntoText:(NSString *)textPath;
+- (void)outputResultTableIntoPath:(NSMutableString *)resultSavedPath;
+
+
 @end

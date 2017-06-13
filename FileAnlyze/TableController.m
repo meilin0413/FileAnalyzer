@@ -64,6 +64,8 @@
         [self creatLibraryTable];
         [self creatResultTable];
         [self creatCommitTable];
+        [self creatLibAndProjsTable];
+        
     }
     [self.db close];
     
@@ -113,6 +115,7 @@
         [self dropCommitTable];
         [self dropResultTable];
         [self dropProjTable];
+        [self dropLibAndProjsTable];
     }
     [self.db close];
 }
@@ -470,7 +473,7 @@
     for (NSString *string in arr)
     {
         
-        if (![string isEqualToString:@"build"])
+        if (![string isEqualToString:@"output"])
         {
             searchIndex++;
             
@@ -482,8 +485,13 @@
     
 }
 
-- (void)outputResultTableIntoText:(NSString *)textPath
+- (void)outputResultTableIntoPath:(NSMutableString *)resultSavedPath
 {
+   
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSMutableString *htmlString = [NSMutableString string];
+    
     if ([self.db open])
     {
         
@@ -493,12 +501,19 @@
             NSLog(@"Great, no version is needed to be changed!");
             return;
         }
-        else
-        {
-            NSLog(@"There are some versions needed to be changed! For detail, please see %@",textPath);
-        }
+        NSLog(@"[analyze_package_version result: WARNING]");
         
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        [resultSavedPath appendString:@"/output/test/analyze_package_version"];
+        NSMutableString *htmlPath = [NSMutableString stringWithString:resultSavedPath];
+        
+        [fm createDirectoryAtPath:resultSavedPath withIntermediateDirectories:YES attributes:nil error:nil];
+        [resultSavedPath appendString:@"/report.json"];
+        [htmlPath appendString:@"/index.html"];
+        
+        [dic setObject:[self repoName] forKey:@"Repository"];
+        [htmlString appendFormat:@"<h2>Repository: %@</h2>",[self repoName]];
+        [htmlString appendFormat:@"<p style=\"color:green;\">----------------------------------------------------------------------------------------------------</p>"];
         NSMutableArray *authorArr = [NSMutableArray array];
         
         FMResultSet *result = [self.db executeQuery:@"select * from resultTable"];
@@ -514,56 +529,56 @@
         
         for (NSString *author in authorArr)
         {
+            [htmlString appendFormat:@"<h3>Author: %@</h3>",author];
             NSMutableDictionary *dicAuthor = [NSMutableDictionary dictionary];
             NSMutableArray *version = [NSMutableArray array];
             NSMutableArray *changeList = [NSMutableArray array];
             FMResultSet *result = [self.db executeQuery:@"select * from resultTable where authorName=?",author];
             
+            [htmlString appendFormat:@"<h4>Version:</h4>"];
+            [dicAuthor setObject:author forKey:@"Author"];
             while ([result next])
             {
                  NSString *plistNotChanged = [[result stringForColumn:@"plistNotChanged"] stringByReplacingOccurrencesOfString:[self rootPath] withString:@""];
+                
                 if (![version containsObject:plistNotChanged])
                 {
                     [version addObject:plistNotChanged];
+                    [htmlString appendFormat:@"<p style=\"color:red;\">%@</p>",plistNotChanged];
                 }
-                
+                [dicAuthor setObject:version forKey:@"Version"];
+            }
+            
+            result = [self.db executeQuery:@"select * from resultTable where authorName=?",author];
+             [htmlString appendFormat:@"<h4>Change List:</h4>"];
+            while ([result next])
+            {
                 NSString *fileChanged = [[result stringForColumn:@"fileChanged"] stringByReplacingOccurrencesOfString:[self rootPath] withString:@""];
+                
                 if (![changeList containsObject:fileChanged])
                 {
                     [changeList addObject:fileChanged];
+                    [htmlString appendFormat:@"<p>%@</p>",fileChanged];
                 }
-                
-                
-                [dicAuthor setObject:version forKey:@"Version"];
+ 
                 [dicAuthor setObject:changeList forKey:@"ChangList"];
-                [dicAuthor setObject:author forKey:@"Author"];
             }
+            [htmlString appendFormat:@"<p style=\"color:green;\">----------------------------------------------------------------------------------------------------</p>"];
+            
             [reports addObject:dicAuthor];
         }
         [dic setObject:reports forKey:@"Reports"];
-        [dic setObject:[self repoName] forKey:@"Repository"];
-        NSError *err = nil;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&err];
-        [jsonData writeToFile:textPath atomically:YES];
-        NSMutableString *jsonString = [[NSMutableString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        //replace "\/" into "/"
-        NSString *ch = nil;
-        for (NSInteger index = 0;index < jsonString.length;index++)
-        {
-            ch = [jsonString substringWithRange:NSMakeRange(index, 1)];
-            if ([ch isEqualToString:@"\\"])
-                [jsonString deleteCharactersInRange:NSMakeRange(index, 1)];
-        }
-        //delete root path, keep relative path
-        
-        
-        [jsonString writeToFile:textPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [htmlString writeToFile:htmlPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSString *jsonString = [self changeDataToJsonData:dic];
+        NSLog(@"There are some versions needed to be changed! For detail, please see %@",resultSavedPath);
+        [jsonString writeToFile:resultSavedPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"%@",jsonString);
     }
     [self.db close];
     
+    
 }
+
 
 - (void)creatFileTable
 {
@@ -853,7 +868,7 @@
         FMResultSet *result = [self.db executeQuery:@"select * from relationshipTable where projName=?",proj];
         while ([result next])
         {
-            NSString *file = [result stringForColumn:@"fileName"];
+            NSString *file = [result stringForColumn:@"filePath"];
             if ([file containsString:@"dependencies"] && [file hasSuffix:@".a"])
             {
                 [libsInProjs addObject:file];

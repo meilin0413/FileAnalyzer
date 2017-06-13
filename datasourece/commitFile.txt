@@ -1,0 +1,60 @@
+LOG for webex-mac-client/master 6215508184593fe6514c74491aba607c1aad3134:8025de2b7e6456e8ba1014c6fe99dcd3cf4f55b3
+commit 8025de2b7e6456e8ba1014c6fe99dcd3cf4f55b3
+Author: Weir Lou (welou) <welou@cisco.com>
+Date:   Thu May 11 13:20:51 2017 +0800
+
+fix build issue
+
+M	src/classic_client/framework_art/servicemgr/CHybridAudioSessionMgr.cpp
+
+commit 5e3082264a76243a9485b891fce0bd59b7a7baba
+Merge: 303fb3c a5d402b
+Author: Weir Lou (welou) <welou@cisco.com>
+Date:   Thu May 11 10:57:48 2017 +0800
+
+Merge branch 'gate/shancxu' into gate/shihzhan
+
+commit 303fb3c691e36419fd91adc2faae7728490aacef
+Author: Weir Lou (welou) <welou@cisco.com>
+Date:   Thu May 11 10:55:52 2017 +0800
+
+update version info
+
+M	src/classic_client/plistdelorean/plistdelorean/Info.plist
+
+commit a5d402bf4455fed938a9e23c77c5063ca4b5be90
+Author: Shancai Xu (shancxu) <shancxu@cisco.com>
+Date:   Thu May 11 10:32:49 2017 +0800
+
+added new telemetry item (Skip A/V)
+
+M	src/classic_client/oneclicktojoin/viewcontrollers/returninguser/OneClickAVDialogViewController.m
+
+commit f01d079e47a156d267aafdc29a4ff6a4a640b1ae
+Author: Shihang Zhang (shihzhan) <shihzhan@cisco.com>
+Date:   Thu May 11 10:06:25 2017 +0800
+
+Release conferenceContext obj after using
+
+M	src/classic_client/framework_art/servicemgr/CServiceMgr.cpp
+
+commit 1896ffbd25ba36cd2535b580f66fcac32d7eb4be
+Author: Shihang Zhang (shihzhan) <shihzhan@cisco.com>
+Date:   Thu May 11 09:40:37 2017 +0800
+
+Update package version
+
+M	src/classic_client/ec/webexmgr/wbxmgrec_info.plist
+M	src/classic_client/mc/webexmgr/Info.plist
+M	src/classic_client/tc/webexmgr/wbxmgrtc_info.plist
+
+commit 7f229c6044f7267fef2a79c978d07a9642c2825f
+Author: Shihang Zhang (shihzhan) <shihzhan@cisco.com>
+Date:   Thu May 11 09:39:00 2017 +0800
+
+Add confmgr JMT keys in JMTReport
+
+M	build/mac/workspaces/part3_029.xcworkspace/contents.xcworkspacedata
+M	src/classic_client/framework_art/commonmgr/JoinMeetingTimeMgr.h
+M	src/classic_client/framework_art/commonmgr/JoinMeetingTimeMgr.mm
+M	src/classic_client/framework_art/servicemgr/CServiceMgr.cpp
